@@ -3,47 +3,44 @@ import "./movingItems.scss";
 import Image from "next/image";
 import { CountryFlag } from "@/utils/helper";
 import Marquee from "react-fast-marquee";
+import UserInitials from "@/components/ui/UserInitials";
 
 const countryList = [
   {
-    title: "Mauritius",
-    code: "MU",
+    title: "ZenithBank",
   },
   {
-    title: "Uganda",
-    code: "UG",
+    title: "FirstBank",
   },
   {
-    title: "South Africa",
-    code: "ZA",
+    title: "AccessBank",
   },
   {
-    title: "Nigeria",
-    code: "NG",
+    title: "Guaranty Trust Bank",
   },
   {
-    title: "Ghana",
-    code: "GH",
+    title: "Stanbic IBTC Bank",
+  },
+  {
+    title: "United Bank for Africa",
+  },
+  {
+    title: "Jaiz Bank",
   },
 ];
 
 export const MovingCountries = () => {
   return (
-    <section className="my-6 max-w-2xl flex-1">
+    <section className="my-10 w-full py-10">
       <Marquee speed={50} gradient={false} className="justify-between" autoFill>
-        {countryList.map(({ title, code }, idx) => (
-          <figure
+        {countryList.map(({ title }, idx) => (
+          <div
             key={idx}
-            className="relative !mx-10 !size-9 overflow-hidden !rounded-full"
+            className="card text-grey-800 mx-3 flex items-center gap-3 p-2"
           >
-            <Image
-              src={CountryFlag(code)}
-              fill
-              sizes="100%"
-              alt={title}
-              className=""
-            />
-          </figure>
+            <UserInitials userName={title} />
+            <small>xNGX - {title}</small>
+          </div>
         ))}
       </Marquee>
     </section>

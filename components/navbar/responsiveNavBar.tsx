@@ -25,7 +25,7 @@ const ResponsiveNavBar = ({
           className={`flex h-screen w-full flex-wrap justify-between overflow-y-auto bg-white py-5 lg:h-auto lg:overflow-visible lg:bg-transparent lg:py-0 lg:pt-0`}
         >
           <div
-            className={`flex w-full flex-col !space-y-5 lg:flex-1 lg:flex-row lg:justify-between lg:space-y-0`}
+            className={`flex w-full flex-col items-center !space-y-5 lg:flex-1 lg:flex-row lg:justify-between lg:!space-y-0`}
           >
             <ul
               className={`flex w-full flex-col justify-start space-y-5 lg:w-6/12 lg:flex-row lg:justify-between lg:space-y-0`}

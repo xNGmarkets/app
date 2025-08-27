@@ -1,4 +1,5 @@
 import { GetStarted } from "@/components/main/getStarted";
+import { MovingCountries } from "@/components/main/moveItems/movingCountries";
 import BrandLogo from "@/components/ui/brandLogo";
 import Button from "@/components/ui/button";
 import { allImages } from "@/public/images/images";
@@ -59,6 +60,8 @@ export default async function Home() {
           </div>
         </figure>
       </section>
+
+      <MovingCountries />
 
       <section className="container my-10">
         <h3 data-aos="fade-down" className="text-center">
