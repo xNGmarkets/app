@@ -1,7 +1,5 @@
 import React from "react";
 import "./movingItems.scss";
-import Image from "next/image";
-import { CountryFlag } from "@/utils/helper";
 import Marquee from "react-fast-marquee";
 import UserInitials from "@/components/ui/UserInitials";
 
