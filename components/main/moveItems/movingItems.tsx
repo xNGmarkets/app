@@ -1,7 +1,7 @@
 import React from "react";
 import "./movingItems.scss";
 import Marquee from "react-fast-marquee";
-import UserInitials from "@/components/ui/UserInitials";
+import { UserInitials } from "@/components/ui/UserAvatar";
 
 const countryList = [
   {
@@ -36,8 +36,11 @@ export const MovingItems = () => {
             key={idx}
             className="card text-grey-800 mx-3 flex items-center gap-3 p-2"
           >
-            <UserInitials userName={title} />
-            <small>xNGX - {title}</small>
+            <UserInitials
+              initials={title}
+              displayName={`xNGX - ${title}`}
+              showName
+            />
           </div>
         ))}
       </Marquee>

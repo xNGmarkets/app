@@ -63,7 +63,7 @@ export default async function Home() {
 
       <MovingItems />
 
-      <section className="container my-10">
+      <section id="how-it-works" className="container my-10">
         <h3 data-aos="fade-down" className="text-center">
           How it works
         </h3>
