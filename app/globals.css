@@ -247,7 +247,7 @@ small {
 /* ====TABS==== */
 .toggleWrapper {
   padding: 6px;
-  border-radius: 4px;
+  border-radius: 8px;
   background: var(--color-grey-25);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -256,6 +256,7 @@ small {
   min-width: 90px;
   min-height: 26px;
 }
+
 .toggleActive,
 .toggleNotActive {
   font-size: 0.8rem;
@@ -272,6 +273,23 @@ small {
   border-radius: 6px;
 }
 /* ====TABS==== */
+
+/* ====SHADCN POPOVER===== */
+.popContent {
+  border: solid 1px var(--color-grey-5);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px -2px #10182808;
+  box-shadow: 0px 12px 16px -4px #10182814;
+}
+
+@layer utilities {
+  .popover-content-width-same-as-its-trigger {
+    width: var(--radix-dropdown-menu-trigger-width);
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
+}
+
+/* ====SHADCN POPOVER===== */
 
 @media screen and (max-width: 900px) {
   h1,

@@ -1,9 +1,10 @@
+"use client";
 import CurrencySwitcher from "@/components/currencySwitcher";
 import { filterDays, topGainers, topLosers } from "@/utils/constant";
 import React from "react";
 import GainersLosersCard from "./gainersLosersCard";
 import { SparkLineChart } from "@/components/chart/sparklineChart";
-import { SelectInput } from "@/components/ui/select/SelectInput";
+import { CustomSelect } from "@/components/ui/select/customSelect";
 
 const series = [{ data: [1.2, 13, 5, 26, 12] }];
 
@@ -13,7 +14,7 @@ export default function RenderGainerLosers() {
       <article className="card shadow-3xl !space-y-6 p-4">
         <header className="flex items-center justify-between gap-2">
           <h5 className="font-medium">Top Gainers</h5>
-          <CurrencySwitcher />
+          <CurrencySwitcher id="gainers" />
         </header>
 
         <div className="w-full overflow-x-auto">
@@ -26,17 +27,18 @@ export default function RenderGainerLosers() {
             <ul className="divide-grey-25 divide-y">
               {topGainers.map((item, idx) => (
                 <li key={idx} className="grid w-full grid-cols-4 py-2">
-                  <GainersLosersCard data={item} />
+                  <GainersLosersCard data={item} id="gainers" />
                 </li>
               ))}
             </ul>
           </div>
         </div>
       </article>
+
       <article className="card shadow-3xl !space-y-6 p-4">
         <header className="flex items-center justify-between gap-2">
           <h5 className="font-medium">Top Losers</h5>
-          <CurrencySwitcher />
+          <CurrencySwitcher id="looser" />
         </header>
 
         <div className="xcustom-scrollbar w-full overflow-x-auto">
@@ -49,7 +51,7 @@ export default function RenderGainerLosers() {
             <ul className="divide-grey-25 divide-y">
               {topLosers.map((item, idx) => (
                 <li key={idx} className="grid w-full grid-cols-4 py-2">
-                  <GainersLosersCard data={item} />
+                  <GainersLosersCard data={item} id="looser" />
                 </li>
               ))}
             </ul>
@@ -58,20 +60,21 @@ export default function RenderGainerLosers() {
       </article>
 
       <article className="card shadow-3xl flex flex-col justify-between gap-6 p-4 pb-10">
-        <header className="flex items-center justify-between gap-2">
-          <h5 className="font-medium">Top Losers</h5>
+        <header className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <small className="font-medium">NGX </small>
+            <h4 className="!text-grey-900 !text-2xl !font-medium">99626.39</h4>
+          </div>
 
           <div className="flex w-fit items-center gap-2">
-            <CurrencySwitcher />
-
-            <SelectInput
+            <CurrencySwitcher id="NGX" />
+            <CustomSelect
               name="filter"
-              selected="Today"
+              value="1day"
               options={filterDays}
-              keyPropertyName="title"
-              itemPropertyName="title"
-              valuePropertyName="value"
-              className="!h-full max-h-[35px] !w-fit min-w-24 !py-3"
+              className="!h-full max-h-[35px] !w-fit min-w-24 !rounded-[5px] !py-3"
+              onChange={() => {}}
+              placeholder="Today"
             />
           </div>
         </header>

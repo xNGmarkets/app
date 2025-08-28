@@ -3,7 +3,7 @@ import { MovingItems } from "@/components/main/moveItems/movingItems";
 import BrandLogo from "@/components/ui/brandLogo";
 import Button from "@/components/ui/button";
 import { allImages } from "@/public/images/images";
-import { HeroTable } from "@/public/svgs";
+import { HeroTable, HurrayIcon } from "@/public/svgs";
 import { compareBroker } from "@/utils/constant";
 import Image from "next/image";
 import { VscPlayCircle } from "react-icons/vsc";
@@ -79,7 +79,7 @@ export default async function Home() {
             <article className="z-10">
               <h4 className="font-gabarito text-grey-800">Pick a stock</h4>
               <p>
-                Browse listings like MTNN, Zenith or Seplat. See a live price
+                Browse listings like MTN NG, Zenith or Seplat. See a live price
                 and a simple band that keeps trades fair.
               </p>
             </article>
@@ -107,9 +107,24 @@ export default async function Home() {
             className="card relative flex flex-col justify-between gap-1 px-5 py-7"
           >
             <h4 className="z-10 !text-2xl">3.</h4>
-            <figure>
-              <Image src={allImages.naijaBrandLogos} alt="" />
+
+            <div className="card z-20 container grid min-h-44 place-items-center bg-white">
+              <div className="flex flex-col items-center justify-center gap-1">
+                <HurrayIcon />
+                <h5 className="text-center text-sm font-medium">
+                  Payment received <br />
+                  sucessfully
+                </h5>
+              </div>
+            </div>
+            <figure className="absolute inset-0 top-[55%] container">
+              <Image
+                src={allImages.getPaid}
+                alt=""
+                className="mx-auto !w-5/6"
+              />
             </figure>
+
             <article className="z-10">
               <h4 className="font-gabarito text-grey-800">Get paid</h4>
               <p>

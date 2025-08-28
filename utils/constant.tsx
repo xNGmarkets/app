@@ -1,4 +1,13 @@
 import { allImages } from "@/public/images/images";
+import {
+  AgricultureIcon,
+  BankIcon,
+  CellTowerIcon,
+  EnergyIcon,
+  InsuranceIcon,
+  SectorIcon,
+  UserIcon,
+} from "@/public/svgs";
 import { MarketInstrument } from "@/types/martkes";
 
 export const compareBroker = [
@@ -364,10 +373,28 @@ export const marketCards: MarketInstrument[] = [
 ];
 
 export const filterDays = [
-  { title: "Today", value: "1day" },
-  { title: "Last 7 days", value: "7days" },
-  { title: "Last 2 weeks", value: "2weeks" },
-  { title: "Last 6 Months", value: "6months" },
-  { title: "Last Year", value: "1year" },
-  { title: "Last 2 Year", value: "2years" },
+  { label: "Today", value: "1day" },
+  { label: "Last 7 days", value: "7days" },
+  { label: "Last 2 weeks", value: "2weeks" },
+  { label: "Last 6 Months", value: "6months" },
+  { label: "Last Year", value: "1year" },
+  { label: "Last 2 Year", value: "2years" },
+];
+
+export const sortData = [
+  { label: "Top volume", value: "topVolume" },
+  { label: "Percentage change", value: "percentageChange" },
+  { label: "Dividend score", value: "dividendScore" },
+  { label: "Price (High - Low)", value: "priceHighLow" },
+  { label: "Price (Low - High)", value: "priceLowHigh" },
+];
+
+export const filterSectors = [
+  { label: "All Sectors", value: "all", icon: <SectorIcon /> },
+  { label: "Banking", value: "banking", icon: <BankIcon /> },
+  { label: "Energy", value: "energy", icon: <EnergyIcon /> },
+  { label: "Agriculture", value: "agriculture", icon: <AgricultureIcon /> },
+  { label: "Consumer", value: "consumer", icon: <UserIcon /> },
+  { label: "Insurance", value: "insurance", icon: <InsuranceIcon /> },
+  { label: "Telecom", value: "telecom", icon: <CellTowerIcon /> },
 ];

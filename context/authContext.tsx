@@ -16,16 +16,22 @@ type userDataType = {
 
 // Define the type for context
 type AuthContextType = {
-  currency: string;
-  updateCurrency: (val: string) => void;
+  DEFAULT_CURRENCY: string;
+  currencyMap: { [key: string]: string };
+  updateCurrency: (id: string, val: string) => void;
   userData: userDataType;
   setUserData: React.Dispatch<React.SetStateAction<userDataType>>;
+  layoutMap: string;
+  updateLayout: (val: string) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const DEFAULT_CURRENCY = "₦";
+
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currency, setCurrency] = useState("₦");
+  const [currencyMap, setCurrencyMap] = useState<{ [key: string]: string }>({});
+  const [layoutMap, setLayoutMap] = useState("grid");
   const [userData, setUserData] = useState<userDataType>(() => {
     // Load user data from localStorage if available
     const storedUserData =
@@ -38,11 +44,25 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.setItem("userData", JSON.stringify(userData));
   }, [userData]);
 
-  const updateCurrency = (val: string) => {
-    setCurrency(val);
+  const updateCurrency = (id: string, val: string) => {
+    if (id) {
+      setCurrencyMap((prev) => ({ ...prev, [id]: val }));
+    }
   };
 
-  const value = { currency, updateCurrency, userData, setUserData };
+  const updateLayout = (val: string) => {
+    setLayoutMap(val);
+  };
+
+  const value = {
+    currencyMap,
+    updateCurrency,
+    userData,
+    setUserData,
+    DEFAULT_CURRENCY,
+    updateLayout,
+    layoutMap,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
