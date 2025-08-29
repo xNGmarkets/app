@@ -1,5 +1,5 @@
 "use client";
-import { useAuthContext } from "@/context/authContext";
+import { useCurrencyContext } from "@/context/currencyContext";
 import React from "react";
 
 const currData = [
@@ -13,9 +13,8 @@ const currData = [
   },
 ];
 
-export default function CurrencySwitcher({ id }: { id: string }) {
-  const { currencyMap, updateCurrency, DEFAULT_CURRENCY } = useAuthContext();
-  const currency = currencyMap[id] ?? DEFAULT_CURRENCY;
+export default function CurrencySwitcher() {
+  const { currency, setCurrency, DEFAULT_CURRENCY } = useCurrencyContext();
 
   return (
     <div className="toggleWrapper">
@@ -23,7 +22,7 @@ export default function CurrencySwitcher({ id }: { id: string }) {
         <button
           key={name}
           className={currency === value ? "toggleActive" : "toggleNotActive"}
-          onClick={() => updateCurrency(id, value)}
+          onClick={() => setCurrency(value)}
         >
           {value}
         </button>

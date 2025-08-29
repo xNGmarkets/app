@@ -1,3 +1,7 @@
+import { MarketPrice } from "@/components/main/markets/table/marketPrice";
+import Button from "@/components/ui/button";
+import { Column } from "@/components/ui/tableComponent/tableComponent";
+import { UserAvatar } from "@/components/ui/UserAvatar";
 import { allImages } from "@/public/images/images";
 import {
   AgricultureIcon,
@@ -9,6 +13,8 @@ import {
   UserIcon,
 } from "@/public/svgs";
 import { MarketInstrument } from "@/types/martkes";
+import { StaticImageData } from "next/image";
+import { FaRegStar } from "react-icons/fa6";
 
 export const compareBroker = [
   {
@@ -397,4 +403,70 @@ export const filterSectors = [
   { label: "Consumer", value: "consumer", icon: <UserIcon /> },
   { label: "Insurance", value: "insurance", icon: <InsuranceIcon /> },
   { label: "Telecom", value: "telecom", icon: <CellTowerIcon /> },
+];
+
+export const marketListDataColData: Column<
+  MarketInstrument & { actions?: string }
+>[] = [
+  {
+    title: "Name",
+    key: "ticker",
+    render: (_, record) => (
+      <div className="flex items-center gap-3">
+        <FaRegStar className="text-grey-800" size={20} />
+        <UserAvatar
+          url={record?.logo as StaticImageData}
+          displayName={`${record?.symbol} - ${record?.ticker}`}
+          initials={record?.ticker}
+          subText={record?.company}
+        />
+      </div>
+    ),
+  },
+
+  {
+    title: "Sector",
+    key: "sector",
+    render: (_, { sector }) => <>{sector}</>,
+  },
+  {
+    title: "KYC",
+    key: "kycLevel",
+    render: (_, { kycLevel }) => <>{kycLevel}</>,
+  },
+  {
+    title: "Band",
+    key: "bandPct",
+    render: (_, { bandPct }) => <>{bandPct}</>,
+  },
+  {
+    title: "Dividends",
+    key: "dividends",
+    render: (_, { dividends }) => <>5.2</>,
+    // render: (_, { dividends }) => <>{dividends}</>,
+  },
+  {
+    title: "Ask Price",
+    key: "askPrice",
+    render: (_, { askPrice }) => <MarketPrice price={Number(askPrice)} />,
+  },
+  {
+    title: "Bid Price",
+    key: "bidPrice",
+    render: (_, { bidPrice }) => <MarketPrice price={Number(bidPrice)} />,
+  },
+  {
+    title: "Buy Price",
+    key: "lastPrice",
+    render: (_, { lastPrice }) => <MarketPrice price={Number(lastPrice)} />,
+  },
+  {
+    title: "Action",
+    key: "actions",
+    render: (_, record) => (
+      <Button link href={`/markets/${record?.id}`} className="pry-btn">
+        Open Trade
+      </Button>
+    ),
+  },
 ];

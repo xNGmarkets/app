@@ -1,11 +1,12 @@
 import React from "react";
 import MarketWrapper from "./marketWrapper";
+import { TableWrapper } from "./table/tableWrapper";
 
 export default function RenderMarkets() {
   return (
     <MarketWrapper>
-      <section>
-        <h2>Market list</h2>
+      <section className="py-5">
+        <TableWrapper />
       </section>
     </MarketWrapper>
   );

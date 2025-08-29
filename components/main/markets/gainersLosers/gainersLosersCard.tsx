@@ -1,24 +1,18 @@
 import { SparkLineChart } from "@/components/chart/sparklineChart";
 import { UserAvatar } from "@/components/ui/UserAvatar";
 import { useAuthContext } from "@/context/authContext";
+import { useCurrencyContext } from "@/context/currencyContext";
 import { MarketInstrument } from "@/types/martkes";
 import { formatNumInThousands } from "@/utils/helper";
 import { StaticImageData } from "next/image";
 import React, { useMemo } from "react";
+import { MarketPrice } from "../table/marketPrice";
 
 export default function GainersLosersCard({
-  id,
   data,
 }: {
-  id: string;
   data: MarketInstrument;
 }) {
-  const { currencyMap, DEFAULT_CURRENCY } = useAuthContext();
-  const currency = currencyMap[id] ?? DEFAULT_CURRENCY;
-
-  const price = useMemo(() => {
-    return currency === "$" ? data?.lastPrice / 1600 : data?.lastPrice;
-  }, [currency]);
   return (
     <>
       <div className="col-span-2">
@@ -29,11 +23,7 @@ export default function GainersLosersCard({
           subText={data?.company}
         />
       </div>
-
-      <small className="text-end">
-        {currency}
-        {formatNumInThousands(price)}
-      </small>
+      <MarketPrice price={data?.lastPrice} className="text-end" />
       <div className="flex justify-end">
         <SparkLineChart
           series={[{ data: data?.changes as number[] }]}

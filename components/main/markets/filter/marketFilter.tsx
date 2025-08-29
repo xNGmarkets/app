@@ -27,7 +27,8 @@ export default function MarketFilter() {
         onChange={() => {}}
         placeholder="Top Volume"
       />
-      <CurrencySwitcher id="filter" />
+
+      <CurrencySwitcher />
     </section>
   );
 }

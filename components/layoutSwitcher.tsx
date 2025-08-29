@@ -1,22 +1,23 @@
 "use client";
 import { useAuthContext } from "@/context/authContext";
+import { useViewLayoutContext, View } from "@/context/viewLayoutProvider";
 import { GridIcon, ListDashIcon } from "@/public/svgs";
 import React from "react";
 
 const currData = [
   { name: "grid", icon: <GridIcon /> },
-  { name: "list", icon: <ListDashIcon /> },
+  { name: "table", icon: <ListDashIcon /> },
 ];
 export default function LayoutSwitcher() {
-  const { layoutMap, updateLayout } = useAuthContext();
+  const { view, handleView } = useViewLayoutContext();
 
   return (
     <div className="toggleWrapper">
       {currData?.map(({ name, icon }, idx) => (
         <button
           key={idx}
-          className={layoutMap === name ? "toggleActive" : "toggleNotActive"}
-          onClick={() => updateLayout(name)}
+          className={view === name ? "toggleActive" : "toggleNotActive"}
+          onClick={() => handleView(name as View)}
         >
           {icon}
         </button>
