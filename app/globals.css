@@ -44,6 +44,7 @@
   --color-success-50: #e9fcf2;
   --color-success-100: #51af7d;
   --color-success-200: #6ce9a6;
+  --color-success-300: #34c759;
   --color-error: #e01a00;
   --color-error-500: #f04438;
   --color-warning-50: #fffaeb;
@@ -54,6 +55,7 @@
   --color-Line: #f4f4f4;
   --shadow-3xl: 0px 4px 12px 0px #0000000d;
   --shadow-4xl: 0px 4px 12px 0px #0000000d;
+  --main-header-height: 71px;
 }
 
 a {
@@ -273,6 +275,23 @@ small {
   background: var(--color-white);
   border-radius: 6px;
 }
+
+.activeTab,
+.notActiveTab {
+  padding-bottom: 0.4em;
+  cursor: pointer;
+  text-align: center;
+  color: var(--color-grey-700);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.activeTab {
+  color: var(--color-primary);
+  font-weight: 600;
+  border-bottom: solid 1px var(--color-primary);
+}
+
 /* ====TABS==== */
 
 /* ====SHADCN POPOVER===== */

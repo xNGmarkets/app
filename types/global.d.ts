@@ -142,3 +142,10 @@ export type DictionaryTypes = {
   };
   footer: FooterTypes;
 };
+
+export type SearchParams = {
+  tab: string;
+  id: string;
+  key: string;
+  title: string;
+};

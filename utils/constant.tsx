@@ -1,3 +1,5 @@
+import { Star } from "@/components/main/markets/star";
+import { BandPCT } from "@/components/main/markets/table/bandPCT";
 import { MarketPrice } from "@/components/main/markets/table/marketPrice";
 import Button from "@/components/ui/button";
 import { Column } from "@/components/ui/tableComponent/tableComponent";
@@ -14,7 +16,6 @@ import {
 } from "@/public/svgs";
 import { MarketInstrument } from "@/types/martkes";
 import { StaticImageData } from "next/image";
-import { FaRegStar } from "react-icons/fa6";
 
 export const compareBroker = [
   {
@@ -413,7 +414,7 @@ export const marketListDataColData: Column<
     key: "ticker",
     render: (_, record) => (
       <div className="flex items-center gap-3">
-        <FaRegStar className="text-grey-800" size={20} />
+        <Star />
         <UserAvatar
           url={record?.logo as StaticImageData}
           displayName={`${record?.symbol} - ${record?.ticker}`}
@@ -437,12 +438,12 @@ export const marketListDataColData: Column<
   {
     title: "Band",
     key: "bandPct",
-    render: (_, { bandPct }) => <>{bandPct}</>,
+    render: (_, { bandPct }) => <BandPCT bandPct={bandPct!} />,
   },
   {
     title: "Dividends",
     key: "dividends",
-    render: (_, { dividends }) => <>5.2</>,
+    render: () => <>5.2</>,
     // render: (_, { dividends }) => <>{dividends}</>,
   },
   {

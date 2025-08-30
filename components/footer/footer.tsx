@@ -9,7 +9,7 @@ import { allImages } from "@/public/images/images";
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-10">
+    <footer className="border-grey-25 border-t bg-white py-10">
       <section className="container flex flex-col justify-between gap-y-5 lg:flex-row">
         <div className="flex justify-between">
           <BrandLogo className="!w-[160px]" />

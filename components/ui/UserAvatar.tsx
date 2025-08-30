@@ -6,6 +6,7 @@ type FileImageProps = {
   initials: string;
   subText?: string;
   className?: string;
+  displayClassName?: string;
 };
 
 export const UserAvatar = ({
@@ -14,6 +15,7 @@ export const UserAvatar = ({
   displayName,
   subText,
   className,
+  displayClassName,
 }: FileImageProps) => {
   return (
     <article className="flex w-full items-center gap-2.5">
@@ -33,10 +35,10 @@ export const UserAvatar = ({
       )}
 
       <div className="flex-1">
-        <p className={`text-grey-900 !text-sm !font-medium`}>{displayName}</p>
-        <small
-          className={`text-grey-500 !text-[10px] !font-medium ${className}`}
-        >
+        <p className={`text-grey-900 !font-medium ${displayClassName}`}>
+          {displayName}
+        </p>
+        <small className={`text-grey-500 !font-medium ${className}`}>
           {subText}
         </small>
       </div>
@@ -69,7 +71,7 @@ export const UserInitials = ({
         <span
           className={`text-EbonyClay text-sm font-bold uppercase ${titleClassName}`}
         >
-          {initials ? initials?.slice(0, 2) : displayName?.slice(0, 2) || "N/A"}
+          {initials ? initials?.slice(0, 2) : displayName?.slice(0, 2) || ""}
         </span>
       </div>
       {showName && (

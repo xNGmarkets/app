@@ -6,6 +6,7 @@ import { MarketPrice } from "../table/marketPrice";
 import { FaRegStar } from "react-icons/fa6";
 import { BsDot } from "react-icons/bs";
 import Button from "@/components/ui/button";
+import { Star } from "../star";
 
 export const GridCard = ({ data }: { data: MarketInstrument }) => {
   const {
@@ -19,7 +20,6 @@ export const GridCard = ({ data }: { data: MarketInstrument }) => {
     lastPrice,
     askPrice,
     kycLevel,
-    dividends,
     bandPct,
   } = data;
   return (
@@ -31,34 +31,35 @@ export const GridCard = ({ data }: { data: MarketInstrument }) => {
             displayName={`${symbol} - ${ticker}`}
             initials={ticker}
             subText={company}
+            className="!text-xs"
           />
-          <p className="text-grey-700 !my-2 flex items-center gap-1 text-xs">
+          <p className="text-grey-700 !my-2 flex items-center gap-1 !text-xs">
             <span>{sector}</span>
             <BsDot />
             <span>KYC{kycLevel}</span>
             <BsDot />
-            <span>Band {bandPct}</span>
+            <span>Band ±{bandPct}</span>
             <BsDot />
           </p>
         </div>
-        <FaRegStar className="text-grey-800" size={20} />
+        <Star />
       </article>
 
       <ul className="text-grey-500 flex max-w-10/12 items-center justify-between gap-3 !py-3 text-xs">
-        <li className="flex flex-col items-center gap-2">
+        <li className="flex flex-col items-center gap-1">
           Dividends
           <span className="text-grey-900 flex items-center gap-1 !text-base">
             {5.4} <FaRegStar className="text-warning-300" size={14} />
           </span>
         </li>
-        <li className="flex flex-col items-center gap-2">
+        <li className="flex flex-col items-center gap-1">
           Ask Price
           <MarketPrice
             price={Number(askPrice) ?? 0}
             className="text-grey-900 !text-base"
           />
         </li>
-        <li className="flex flex-col items-center gap-2">
+        <li className="flex flex-col items-center gap-1">
           Bid Price
           <MarketPrice
             price={Number(bidPrice) ?? 0}
