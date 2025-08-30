@@ -34,7 +34,7 @@
   --color-grey-300: #d1d5db;
   --color-grey-400: #9ca3af;
   --color-grey-500: #959595;
-  --color-grey-600: #383838e5;
+  --color-grey-600: #777777;
   --color-grey-700: #5a5a5a;
   --color-grey-750: #4f7096;
   --color-grey-800: #3c3c3c;
@@ -226,7 +226,7 @@ small {
 }
 
 .outline-btn {
-  border: solid 1px var(--color-secondary);
+  border: solid 1px var(--color-grey-25);
 }
 
 /* ====Btns==== */
@@ -310,6 +310,43 @@ small {
 }
 
 /* ====SHADCN POPOVER===== */
+
+/* =====FORM==== */
+
+label {
+  font-size: 0.9rem;
+  color: var(--color-grey-700);
+  margin-bottom: 0.3em;
+}
+
+.form-controls {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-grey-900);
+  background-color: var(--color-white);
+  background-clip: padding-box;
+  border: 1px solid var(--color-grey-25);
+  border-radius: 8px;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.inputWrapper {
+  width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .inputWrapper {
+    width: 49%;
+  }
+}
+
+/* =====FORM==== */
 
 @media screen and (max-width: 900px) {
   h1,

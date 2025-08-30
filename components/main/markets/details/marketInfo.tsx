@@ -10,7 +10,7 @@ import { FaRegStar } from "react-icons/fa6";
 import { BandPCT } from "../table/bandPCT";
 import { Switch } from "@/components/ui/switch/switch";
 
-export default function LeftSidebar({ marketId }: { marketId: string }) {
+export default function MarketInfo({ marketId }: { marketId: string }) {
   const data = marketCards?.find((i) => i?.id === marketId);
 
   const {

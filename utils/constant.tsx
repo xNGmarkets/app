@@ -379,6 +379,41 @@ export const marketCards: MarketInstrument[] = [
   },
 ];
 
+export const tradeTypes = [
+  { label: "Limit Order", value: "limit-order", cta: "Place Limit BUY" },
+  { label: "Market Buy", value: "market-buy", cta: "Buy now" },
+  { label: "Primary Mint", value: "mint", cta: "Buy now" },
+  { label: "Primary Burn", value: "burn", cta: "Submit burn for USDC" },
+];
+
+export const preferenceTypes = [
+  { label: "Lenient (Final VWAP check)", value: "Lenient (Final VWAP check)" },
+  {
+    label: "Strict (Strip cancel on breach)",
+    value: "Strict (Strip cancel on breach)",
+  },
+];
+
+export const toleranceTypes = [
+  { label: "Conservative", value: "Conservative" },
+  {
+    label: "Balanced",
+    value: "Balanced",
+  },
+  {
+    label: "Aggressive",
+    value: "Aggressive",
+  },
+  {
+    label: "Opportunistic",
+    value: "Opportunistic",
+  },
+  {
+    label: "Custom",
+    value: "Custom",
+  },
+];
+
 export const filterDays = [
   { label: "Today", value: "1day" },
   { label: "Last 7 days", value: "7days" },

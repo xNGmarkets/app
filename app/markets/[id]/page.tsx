@@ -1,6 +1,7 @@
-import LeftSidebar from "@/components/main/markets/details/leftSidebar";
+import MarketInfo from "@/components/main/markets/details/marketInfo";
 import RenderMarketDetails from "@/components/main/markets/details/renderMarketDetails";
-import RightSidebar from "@/components/main/markets/details/rightSidebar";
+import TradeBar from "@/components/main/markets/details/trade/tradeBar";
+import { CurrencyProvider } from "@/context/currencyContext";
 import { SearchParams } from "@/types/global";
 
 export default async function page({
@@ -15,9 +16,11 @@ export default async function page({
 
   return (
     <main className="mt-[var(--main-header-height)] flex flex-col lg:flex-row">
-      <LeftSidebar marketId={id} />
+      <MarketInfo marketId={id} />
       <RenderMarketDetails params={pm} marketId={id} />
-      <RightSidebar />
+      <CurrencyProvider>
+        <TradeBar marketId={id} />
+      </CurrencyProvider>
     </main>
   );
 }
