@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/navbar";
+import { Providers } from "@/context/providers";
 
 export default async function MarketLayout({
   children,
@@ -6,9 +7,11 @@ export default async function MarketLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
-      <Navbar />
-      {children}
-    </main>
+    <Providers>
+      <main>
+        <Navbar />
+        {children}
+      </main>
+    </Providers>
   );
 }

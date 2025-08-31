@@ -22,12 +22,15 @@ function Search({
   // }, [dispatch]);
 
   return (
-    <div className={`search flex w-full items-center ${className} `}>
+    <div
+      className={`card bg-grey-25 flex min-h-[46px] w-full items-center gap-2 px-3 ${className} `}
+    >
       <BiSearch className="searchIcon" />
       <input
+        id="search"
         type="text"
         placeholder={placeholder}
-        className="form-controls !bg-[transparent]"
+        className="min-h-[46px] flex-1 bg-transparent focus:border-0 focus:outline-0"
         // onChange={handleSearchInputChange}
       />
     </div>

@@ -3,7 +3,7 @@ import { MovingItems } from "@/components/main/moveItems/movingItems";
 import BrandLogo from "@/components/ui/brandLogo";
 import Button from "@/components/ui/button";
 import { allImages } from "@/public/images/images";
-import { HeroTable } from "@/public/svgs";
+import { HeroTable, HurrayIcon } from "@/public/svgs";
 import { compareBroker } from "@/utils/constant";
 import Image from "next/image";
 import { VscPlayCircle } from "react-icons/vsc";
@@ -11,7 +11,7 @@ import { VscPlayCircle } from "react-icons/vsc";
 export default async function Home() {
   return (
     <main className="overflow-x-hidden">
-      <section className="flex min-h-screen flex-wrap items-center justify-between gap-4 py-20">
+      <section className="flex min-h-screen flex-wrap items-center justify-between gap-4 pt-10">
         <article
           data-aos="fade-left"
           data-aos-duration="1500"
@@ -24,7 +24,9 @@ export default async function Home() {
           </h5>
 
           <div className="grid w-full grid-cols-2 items-center gap-2 lg:w-fit">
-            <Button className="pry-btn">Start trading</Button>
+            <Button link href="/markets" className="pry-btn">
+              Start trading
+            </Button>
             <Button className="alt-btn">
               {" "}
               <VscPlayCircle /> How it works
@@ -63,11 +65,11 @@ export default async function Home() {
 
       <MovingItems />
 
-      <section className="container my-10">
+      <section id="how-it-works" className="container my-10">
         <h3 data-aos="fade-down" className="text-center">
           How it works
         </h3>
-        <ul className="container !mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ul className="container !my-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <li
             data-aos="fade-in"
             className="card relative flex flex-col justify-between gap-1 px-5 py-5"
@@ -79,7 +81,7 @@ export default async function Home() {
             <article className="z-10">
               <h4 className="font-gabarito text-grey-800">Pick a stock</h4>
               <p>
-                Browse listings like MTNN, Zenith or Seplat. See a live price
+                Browse listings like MTN NG, Zenith or Seplat. See a live price
                 and a simple band that keeps trades fair.
               </p>
             </article>
@@ -107,9 +109,24 @@ export default async function Home() {
             className="card relative flex flex-col justify-between gap-1 px-5 py-7"
           >
             <h4 className="z-10 !text-2xl">3.</h4>
-            <figure>
-              <Image src={allImages.naijaBrandLogos} alt="" />
+
+            <div className="card z-20 container grid min-h-44 place-items-center bg-white">
+              <div className="flex flex-col items-center justify-center gap-1">
+                <HurrayIcon />
+                <h5 className="text-center text-sm font-medium">
+                  Payment received <br />
+                  sucessfully
+                </h5>
+              </div>
+            </div>
+            <figure className="absolute inset-0 top-[55%] container">
+              <Image
+                src={allImages.getPaid}
+                alt=""
+                className="mx-auto !w-5/6"
+              />
             </figure>
+
             <article className="z-10">
               <h4 className="font-gabarito text-grey-800">Get paid</h4>
               <p>
@@ -120,6 +137,12 @@ export default async function Home() {
             <div className="cardBlur absolute inset-0 h-full"></div>
           </li>
         </ul>
+
+        <div className="flex w-full flex-col items-center justify-center">
+          <Button link href="/markets" className="pry-btn w-fit">
+            Get started
+          </Button>
+        </div>
       </section>
 
       <section className="bg-grey-25 my-10 py-20">

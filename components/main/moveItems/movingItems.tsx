@@ -1,7 +1,7 @@
 import React from "react";
 import "./movingItems.scss";
 import Marquee from "react-fast-marquee";
-import UserInitials from "@/components/ui/UserInitials";
+import { UserInitials } from "@/components/ui/UserAvatar";
 
 const countryList = [
   {
@@ -29,15 +29,18 @@ const countryList = [
 
 export const MovingItems = () => {
   return (
-    <section className="my-10 w-full py-10">
+    <section className="w-full py-5">
       <Marquee speed={50} gradient={false} className="justify-between" autoFill>
         {countryList.map(({ title }, idx) => (
           <div
             key={idx}
             className="card text-grey-800 mx-3 flex items-center gap-3 p-2"
           >
-            <UserInitials userName={title} />
-            <small>xNGX - {title}</small>
+            <UserInitials
+              initials={title}
+              displayName={`xNGX - ${title}`}
+              showName
+            />
           </div>
         ))}
       </Marquee>

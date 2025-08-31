@@ -1,5 +1,5 @@
 export const defaultMetada = {
-  metadataBase: new URL("https://www.neolyf.app"),
+  metadataBase: new URL("https://www.xng.markets"),
   title: {
     default:
       "Buy and sell tokenized shares of Nigeria’s top companies. Dividends come in USD. Monthly proof‑of‑reserves. Built for everyone.",
@@ -16,7 +16,7 @@ export const defaultMetada = {
       "Buy and sell tokenized shares of Nigeria’s top companies. Dividends come in USD. Monthly proof‑of‑reserves. Built for everyone.",
     type: "website",
     locale: "en_US",
-    url: "https://www.neolyf.app",
+    url: "https://www.xng.markets",
     siteName: "xNGmarket",
   },
 };

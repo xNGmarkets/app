@@ -9,7 +9,7 @@ export const landingNavRoutes = [
 
   {
     name: "Read whitepaper",
-    path: "#",
+    path: "https://github.com/xNGmarkets/Whitepaper",
   },
 ];
 
@@ -41,7 +41,7 @@ export const accountRoutes = [
   },
   {
     name: "My Watchlist",
-    path: "#",
+    path: "/watch-list",
     icon: <FaRegStar />,
   },
 ];
