@@ -227,6 +227,7 @@ small {
 
 .outline-btn {
   border: solid 1px var(--color-grey-25);
+  color: var(--color-primary);
 }
 
 /* ====Btns==== */

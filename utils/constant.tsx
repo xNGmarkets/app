@@ -15,7 +15,12 @@ import {
   SectorIcon,
   UserIcon,
 } from "@/public/svgs";
-import { MarketInstrument } from "@/types/martkes";
+import {
+  BorrowTypes,
+  MarketInstrument,
+  SupplyHistoryTypes,
+  SupplyTypes,
+} from "@/types/martkes";
 import { StaticImageData } from "next/image";
 import { FaStar } from "react-icons/fa6";
 
@@ -505,5 +510,178 @@ export const marketListDataColData: Column<
         Open Trade
       </Button>
     ),
+  },
+];
+
+// Supply and Accrued Data
+export const supplyAccruedData = [
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    asset: "USDC",
+    supplied: 5000,
+    accrued: 0.0306,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    asset: "USDC",
+    supplied: 300,
+    accrued: 0.0306,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    asset: "USDC",
+    supplied: 300,
+    accrued: 0.0306,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    asset: "USDC",
+    supplied: 300,
+    accrued: 0.0306,
+  },
+];
+
+// Borrow/Debt Data
+export const borrowDebtData = [
+  {
+    amounts: 153000,
+    units: 50,
+    debts: 300,
+    ltv: 1.2,
+    hf: 59.75,
+  },
+  {
+    amounts: 100,
+    units: 50,
+    debts: 300,
+    ltv: 1.2,
+    hf: 59.75,
+  },
+  {
+    amounts: 100,
+    units: 50,
+    debts: 300,
+    ltv: 1.2,
+    hf: 59.75,
+  },
+  {
+    amounts: 100,
+    units: 50,
+    debts: 300,
+    ltv: 1.2,
+    hf: 59.75,
+  },
+];
+
+// Transaction History Data
+export const transactionHistoryData = [
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    type: "Supply",
+    amount: 5000,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    type: "Claim rewards",
+    amount: 0.5,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    type: "Withdraw",
+    amount: 2500,
+  },
+  {
+    date: "8/23/2025, 1:38:59 PM",
+    type: "Supply",
+    amount: 1000,
+  },
+];
+
+export const supplyColData: Column<SupplyTypes & { actions?: string }>[] = [
+  {
+    title: "DATE",
+    key: "date",
+    render: (_, { date }) => <> {date}</>,
+  },
+  {
+    title: "ASSET",
+    key: "asset",
+    render: (_, { asset }) => <>{asset}</>,
+  },
+
+  {
+    title: "SUPPLIED",
+    key: "supplied",
+    render: (_, { supplied }) => <MarketPrice price={supplied} />,
+  },
+  {
+    title: "ACCRUED (USDC)",
+    key: "accrued",
+    render: (_, { accrued }) => <MarketPrice price={accrued} />,
+  },
+  {
+    title: "Action",
+    key: "actions",
+    render: () => <Button className="outline-btn">Claim</Button>,
+  },
+];
+
+export const transactionHisoryColData: Column<
+  SupplyHistoryTypes & { actions?: string }
+>[] = [
+  {
+    title: "DATE",
+    key: "date",
+    render: (_, { date }) => <> {date}</>,
+  },
+  {
+    title: "TYPE",
+    key: "type",
+    render: (_, { type }) => <>{type}</>,
+  },
+
+  {
+    title: "AMOUNT",
+    key: "amount",
+    render: (_, { amount }) => <MarketPrice price={amount} />,
+  },
+
+  {
+    title: "Action",
+    key: "actions",
+    render: () => <Button className="outline-btn">Claim</Button>,
+  },
+];
+
+export const borrrowColData: Column<BorrowTypes & { actions?: string }>[] = [
+  {
+    title: "AMOUNTS",
+    key: "amounts",
+    render: (_, { amounts }) => <MarketPrice price={amounts} />,
+  },
+  {
+    title: "UNITS",
+    key: "units",
+    render: (_, { units }) => <>{units}</>,
+  },
+  {
+    title: "DEBTS (USDC)",
+    key: "debts",
+    render: (_, { debts }) => <>{debts}</>,
+  },
+  {
+    title: "LTV",
+    key: "ltv",
+    render: (_, { ltv }) => <BandPCT bandPct={ltv} />,
+  },
+  {
+    title: "HF",
+    key: "hf",
+    render: (_, { hf }) => <MarketPrice price={hf} />,
+  },
+  {
+    title: "Action",
+    key: "actions",
+    render: () => <Button className="pry-btn">Repay</Button>,
   },
 ];
