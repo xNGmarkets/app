@@ -1,5 +1,5 @@
 import CurrencySwitcher from "@/components/currencySwitcher";
-import Renderperformance from "@/components/main/portfolio/renderperformance";
+import RenderPerformances from "@/components/main/portfolio/renderPerformances";
 import { CurrencyProvider } from "@/context/currencyContext";
 
 import React from "react";
@@ -20,7 +20,7 @@ export default function page() {
           </article>
         </header>
 
-        <Renderperformance />
+        <RenderPerformances />
       </main>
     </CurrencyProvider>
   );

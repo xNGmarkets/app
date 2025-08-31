@@ -8,7 +8,7 @@ import { CurrencyProvider } from "@/context/currencyContext";
 
 const series = [{ data: [1.2, 13, 5, 26, 12] }];
 
-export default function Renderperformance() {
+export default function RenderPerformances() {
   return (
     <section className="grid grid-cols-1 justify-between gap-4 lg:grid-cols-2">
       <CurrencyProvider>
