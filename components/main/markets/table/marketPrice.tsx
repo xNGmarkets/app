@@ -18,7 +18,7 @@ export const MarketPrice = ({
   const { currency } = useCurrencyContext();
 
   const formatedPrice = useMemo(() => {
-    return currency === "$" ? parseFloat(price?.toString()) / 1600 : price;
+    return currency === "$" ? parseFloat(price?.toString()) / 1530 : price;
   }, [currency, price]);
   return (
     <div className={wrapperClassName}>

@@ -36,7 +36,7 @@ export const navRoutes = [
 export const accountRoutes = [
   {
     name: "Portfolio",
-    path: "#",
+    path: "/portfolio",
     icon: <StakeIcon />,
   },
   {

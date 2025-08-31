@@ -17,3 +17,24 @@ export type MarketInstrument = {
   changes?: number[];
   logo?: StaticImageData | null;
 };
+
+export type BorrowTypes = {
+  amounts: number;
+  units: number;
+  debts: number;
+  ltv: number;
+  hf: number;
+};
+
+export type SupplyHistoryTypes = {
+  date: strring;
+  type: string;
+  amount: number;
+};
+
+export type SupplyTypes = {
+  date: string;
+  asset: string;
+  supplied: number;
+  accrued: number;
+};
