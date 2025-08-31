@@ -1,11 +1,8 @@
 import { SparkLineChart } from "@/components/chart/sparklineChart";
 import { UserAvatar } from "@/components/ui/UserAvatar";
-import { useAuthContext } from "@/context/authContext";
-import { useCurrencyContext } from "@/context/currencyContext";
 import { MarketInstrument } from "@/types/martkes";
-import { formatNumInThousands } from "@/utils/helper";
 import { StaticImageData } from "next/image";
-import React, { useMemo } from "react";
+import React from "react";
 import { MarketPrice } from "../table/marketPrice";
 
 export default function GainersLosersCard({

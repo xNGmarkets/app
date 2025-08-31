@@ -9,7 +9,7 @@ export const landingNavRoutes = [
 
   {
     name: "Read whitepaper",
-    path: "#",
+    path: "https://github.com/xNGmarkets/Whitepaper",
   },
 ];
 

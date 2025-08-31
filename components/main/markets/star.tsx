@@ -1,6 +1,6 @@
 "use client";
 import { useMarketContext } from "@/context/marketContext";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaRegStar, FaStar } from "react-icons/fa6";
 
 export const Star = ({ id, size }: { id: string; size?: number }) => {

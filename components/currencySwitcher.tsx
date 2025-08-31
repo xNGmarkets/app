@@ -14,7 +14,7 @@ const currData = [
 ];
 
 export default function CurrencySwitcher() {
-  const { currency, setCurrency, DEFAULT_CURRENCY } = useCurrencyContext();
+  const { currency, setCurrency } = useCurrencyContext();
 
   return (
     <div className="toggleWrapper">

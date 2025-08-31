@@ -10,7 +10,9 @@ export const GetStarted = () => {
         </h2>
       </hgroup>
 
-      <Button className="pry-btn">Start trading</Button>
+      <Button link href="/markets" className="pry-btn">
+        Start trading
+      </Button>
     </section>
   );
 };

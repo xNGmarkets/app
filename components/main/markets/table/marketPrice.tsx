@@ -19,7 +19,7 @@ export const MarketPrice = ({
 
   const formatedPrice = useMemo(() => {
     return currency === "$" ? parseFloat(price?.toString()) / 1600 : price;
-  }, [currency]);
+  }, [currency, price]);
   return (
     <div className={wrapperClassName}>
       <h5 className={className}>

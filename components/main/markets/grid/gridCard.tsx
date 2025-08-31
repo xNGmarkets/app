@@ -3,7 +3,6 @@ import { MarketInstrument } from "@/types/martkes";
 import { StaticImageData } from "next/image";
 import React from "react";
 import { MarketPrice } from "../table/marketPrice";
-import { FaRegStar } from "react-icons/fa6";
 import { BsDot } from "react-icons/bs";
 import Button from "@/components/ui/button";
 import { Star } from "../star";

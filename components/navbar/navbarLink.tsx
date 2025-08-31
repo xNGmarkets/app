@@ -29,7 +29,7 @@ export default function NavbarLink({
     <>
       {childRoutes ? (
         <PopoverWrapper
-          title={<span>{name}</span>}
+          selected={<span>{name}</span>}
           icon={<FiChevronDown />}
           triggerClassName={`${"navbarNotActive"} hover:!text-primary ${className}`}
           className="w-fit"

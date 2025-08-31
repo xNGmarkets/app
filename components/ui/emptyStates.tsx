@@ -5,7 +5,6 @@ const EmptyState = ({
   title,
   subTitle,
   className,
-  icon,
 }: {
   title: string;
   className?: string;

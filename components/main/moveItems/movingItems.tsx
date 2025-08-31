@@ -29,7 +29,7 @@ const countryList = [
 
 export const MovingItems = () => {
   return (
-    <section className="my-10 w-full py-10">
+    <section className="w-full py-5">
       <Marquee speed={50} gradient={false} className="justify-between" autoFill>
         {countryList.map(({ title }, idx) => (
           <div

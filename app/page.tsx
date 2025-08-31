@@ -11,7 +11,7 @@ import { VscPlayCircle } from "react-icons/vsc";
 export default async function Home() {
   return (
     <main className="overflow-x-hidden">
-      <section className="flex min-h-screen flex-wrap items-center justify-between gap-4 py-20">
+      <section className="flex min-h-screen flex-wrap items-center justify-between gap-4 pt-10">
         <article
           data-aos="fade-left"
           data-aos-duration="1500"
@@ -24,7 +24,9 @@ export default async function Home() {
           </h5>
 
           <div className="grid w-full grid-cols-2 items-center gap-2 lg:w-fit">
-            <Button className="pry-btn">Start trading</Button>
+            <Button link href="/markets" className="pry-btn">
+              Start trading
+            </Button>
             <Button className="alt-btn">
               {" "}
               <VscPlayCircle /> How it works
@@ -67,7 +69,7 @@ export default async function Home() {
         <h3 data-aos="fade-down" className="text-center">
           How it works
         </h3>
-        <ul className="container !mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ul className="container !my-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <li
             data-aos="fade-in"
             className="card relative flex flex-col justify-between gap-1 px-5 py-5"
@@ -135,6 +137,12 @@ export default async function Home() {
             <div className="cardBlur absolute inset-0 h-full"></div>
           </li>
         </ul>
+
+        <div className="flex w-full flex-col items-center justify-center">
+          <Button link href="/markets" className="pry-btn w-fit">
+            Get started
+          </Button>
+        </div>
       </section>
 
       <section className="bg-grey-25 my-10 py-20">

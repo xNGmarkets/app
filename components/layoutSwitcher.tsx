@@ -1,5 +1,4 @@
 "use client";
-import { useAuthContext } from "@/context/authContext";
 import { useViewLayoutContext, View } from "@/context/viewLayoutProvider";
 import { GridIcon, ListDashIcon } from "@/public/svgs";
 import React from "react";
