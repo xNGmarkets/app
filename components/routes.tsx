@@ -41,7 +41,7 @@ export const accountRoutes = [
   },
   {
     name: "My Watchlist",
-    path: "#",
+    path: "/watch-list",
     icon: <FaRegStar />,
   },
 ];

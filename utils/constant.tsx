@@ -1,5 +1,6 @@
 import { Star } from "@/components/main/markets/star";
 import { BandPCT } from "@/components/main/markets/table/bandPCT";
+import { Dividends } from "@/components/main/markets/table/dividends";
 import { MarketPrice } from "@/components/main/markets/table/marketPrice";
 import Button from "@/components/ui/button";
 import { Column } from "@/components/ui/tableComponent/tableComponent";
@@ -16,6 +17,7 @@ import {
 } from "@/public/svgs";
 import { MarketInstrument } from "@/types/martkes";
 import { StaticImageData } from "next/image";
+import { FaStar } from "react-icons/fa6";
 
 export const compareBroker = [
   {
@@ -168,7 +170,7 @@ export const marketCards: MarketInstrument[] = [
     logo: allImages.energy,
   },
   {
-    id: "xngx-agrigoldings",
+    id: "xngx-agrigholdings",
     symbol: "xNGX",
     ticker: "AgriHoldings",
     company: "AgriHoldings PLC",
@@ -273,7 +275,7 @@ export const marketCards: MarketInstrument[] = [
     logo: null,
   },
   {
-    id: "xngx-",
+    id: "xngx-freshmarket",
     symbol: "xNGX",
     ticker: "FreshMarket",
     company: "FreshMarket PLC",
@@ -449,7 +451,7 @@ export const marketListDataColData: Column<
     key: "ticker",
     render: (_, record) => (
       <div className="flex items-center gap-3">
-        <Star />
+        <Star id={record?.id!} />
         <UserAvatar
           url={record?.logo as StaticImageData}
           displayName={`${record?.symbol} - ${record?.ticker}`}
@@ -478,8 +480,7 @@ export const marketListDataColData: Column<
   {
     title: "Dividends",
     key: "dividends",
-    render: () => <>5.2</>,
-    // render: (_, { dividends }) => <>{dividends}</>,
+    render: () => <Dividends />,
   },
   {
     title: "Ask Price",

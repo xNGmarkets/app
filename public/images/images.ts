@@ -19,9 +19,11 @@ import card1 from "@/public/images/card-1.png";
 import card2 from "@/public/images/card-2.png";
 import card from "@/public/images/card.png";
 import getPaid from "@/public/images/getPaid.png";
+import metaMask from "@/public/images/metaMask.png";
 
 export const allImages = {
   hedaraLogo,
+  metaMask,
   getPaid,
   heroImg,
   secLogo,

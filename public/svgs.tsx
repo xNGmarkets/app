@@ -894,3 +894,19 @@ export const FunnelIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const NotFound = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={60}
+    height={60}
+    fill="none"
+    {...props}
+  >
+    <rect width={60} height={60} fill="#DFDFDF" rx={30} />
+    <path
+      fill="#3C3C3C"
+      d="m38.03 24.22-3.75-3.75a.748.748 0 0 0-.53-.22h-7.5a1.5 1.5 0 0 0-1.5 1.5v1.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v13.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5v-1.5h1.5a1.5 1.5 0 0 0 1.5-1.5v-10.5a.75.75 0 0 0-.22-.53Zm-4.28 14.03h-10.5v-13.5h7.19l3.31 3.31v10.19Zm3-3h-1.5v-7.5a.75.75 0 0 0-.22-.53l-3.75-3.75a.748.748 0 0 0-.53-.22h-4.5v-1.5h7.19l3.31 3.31v10.19Zm-5.25-3a.75.75 0 0 1-.75.75h-4.5a.75.75 0 1 1 0-1.5h4.5a.75.75 0 0 1 .75.75Zm0 3a.75.75 0 0 1-.75.75h-4.5a.75.75 0 1 1 0-1.5h4.5a.75.75 0 0 1 .75.75Z"
+    />
+  </svg>
+);

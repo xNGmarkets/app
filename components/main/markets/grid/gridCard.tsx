@@ -7,6 +7,7 @@ import { FaRegStar } from "react-icons/fa6";
 import { BsDot } from "react-icons/bs";
 import Button from "@/components/ui/button";
 import { Star } from "../star";
+import { Dividends } from "../table/dividends";
 
 export const GridCard = ({ data }: { data: MarketInstrument }) => {
   const {
@@ -42,15 +43,13 @@ export const GridCard = ({ data }: { data: MarketInstrument }) => {
             <BsDot />
           </p>
         </div>
-        <Star />
+        <Star id={id as string} />
       </article>
 
       <ul className="text-grey-500 flex max-w-10/12 items-center justify-between gap-3 !py-3 text-xs">
         <li className="flex flex-col items-center gap-1">
           Dividends
-          <span className="text-grey-900 flex items-center gap-1 !text-base">
-            {5.4} <FaRegStar className="text-warning-300" size={14} />
-          </span>
+          <Dividends className="text-grey-900 !text-base" />
         </li>
         <li className="flex flex-col items-center gap-1">
           Ask Price

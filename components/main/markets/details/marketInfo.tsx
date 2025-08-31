@@ -6,9 +6,9 @@ import React from "react";
 import { Star } from "../star";
 import { MarketPrice } from "../table/marketPrice";
 import { CurrencyProvider } from "@/context/currencyContext";
-import { FaRegStar } from "react-icons/fa6";
 import { BandPCT } from "../table/bandPCT";
 import { Switch } from "@/components/ui/switch/switch";
+import { FaStar } from "react-icons/fa6";
 
 export default function MarketInfo({ marketId }: { marketId: string }) {
   const data = marketCards?.find((i) => i?.id === marketId);
@@ -17,7 +17,6 @@ export default function MarketInfo({ marketId }: { marketId: string }) {
     id,
     logo,
     symbol,
-    sector,
     ticker,
     company,
     bidPrice,
@@ -37,8 +36,9 @@ export default function MarketInfo({ marketId }: { marketId: string }) {
             subText={company}
             displayClassName="!text-lg"
           />
-
-          <Star />
+          <div className="bg-grey-25 grid size-10 place-items-center rounded-lg p-2">
+            <Star size={18} id={id!} />
+          </div>
         </article>
 
         <ul className="!mt-3 flex flex-col justify-between gap-1 !text-xs lg:flex-row">
@@ -86,7 +86,7 @@ export default function MarketInfo({ marketId }: { marketId: string }) {
           <li className="card text-grey-500 flex flex-col items-center gap-1 p-2 !text-xs">
             Dividends
             <span className="text-grey-900 flex items-center gap-1 !text-base">
-              {5.4} <Star size={12} clicked />
+              {5.4} <FaStar size={12} className="text-warning-300" />
             </span>
           </li>
           <li className="card text-grey-500 flex flex-col items-center gap-1 p-2 !text-xs">

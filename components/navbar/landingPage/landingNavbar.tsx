@@ -22,7 +22,7 @@ const LandingNavbar = () => {
     };
   }, []);
 
-  if (path?.includes("/markets")) return;
+  if (path !== "/") return;
 
   return (
     <header

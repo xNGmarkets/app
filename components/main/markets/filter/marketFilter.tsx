@@ -15,7 +15,7 @@ export default function MarketFilter() {
         name="filter"
         value="all"
         options={filterSectors}
-        className="w-full min-w-24 !py-3 lg:!w-[30%]"
+        className="w-full min-w-24 !py-3 lg:flex-1"
         onChange={() => {}}
         placeholder="All Sector"
       />
@@ -23,7 +23,7 @@ export default function MarketFilter() {
         name="filter"
         value="topVolume"
         options={sortData}
-        className="w-full min-w-24 !py-3 lg:!w-[20%]"
+        className="w-full min-w-24 !py-3 lg:flex-1"
         onChange={() => {}}
         placeholder="Top Volume"
       />

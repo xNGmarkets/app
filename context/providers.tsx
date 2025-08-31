@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ModalProvider } from "./modalContext";
 import { AuthProvider } from "./authContext";
 import ViewLayoutProvider from "./viewLayoutProvider";
+import { MarketProvider } from "./marketContext";
 
 const queryClient = new QueryClient();
 export const Providers = ({
@@ -13,9 +14,11 @@ export const Providers = ({
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ViewLayoutProvider>
-          <ModalProvider>{children}</ModalProvider>
-        </ViewLayoutProvider>
+        <MarketProvider>
+          <ViewLayoutProvider>
+            <ModalProvider>{children}</ModalProvider>
+          </ViewLayoutProvider>
+        </MarketProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
