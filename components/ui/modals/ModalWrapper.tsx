@@ -43,10 +43,7 @@ const ModalWrapper = ({
         onOpenChange={(isOpen) => !isOpen && closeModal(String(id))}
       >
         <DialogContent
-          className={cn(
-            "space-y-5 !border-0 bg-white sm:max-w-[402px]",
-            wrapperClass,
-          )}
+          className={cn("space-y-5 !border-0 bg-white", wrapperClass)}
         >
           {icon}
 

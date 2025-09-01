@@ -1,4 +1,3 @@
-import CurrencySwitcher from "@/components/currencySwitcher";
 import { BorrowStats } from "@/components/main/borrow/borrowStats";
 import { TableWrapper } from "@/components/main/borrow/tableWrapper";
 import Button from "@/components/ui/button";
@@ -19,7 +18,6 @@ export default function page() {
           <div className="card !rounded-full px-3 py-1">
             <small>$1 - ₦1,530</small>
           </div>
-          <CurrencySwitcher />
           <Button className="pry-btn w-full md:w-fit">Borrow USDC</Button>
         </article>
       </header>

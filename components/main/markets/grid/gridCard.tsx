@@ -31,7 +31,7 @@ export const GridCard = ({ data }: { data: MarketInstrument }) => {
             displayName={`${symbol} - ${ticker}`}
             initials={ticker}
             subText={company}
-            className="!text-xs"
+            subtextClassName="!text-xs"
           />
           <p className="text-grey-700 !my-2 flex items-center gap-1 !text-xs">
             <span>{sector}</span>

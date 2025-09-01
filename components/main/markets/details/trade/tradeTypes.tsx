@@ -205,7 +205,7 @@ export const QtyInput = ({ label }: { label?: string | ReactNode }) => {
             id=""
             type="text"
             placeholder="e.g, 100"
-            className="bg-transparent text-center focus:border-0 focus:outline-0"
+            className="w-full bg-transparent text-center focus:border-0 focus:outline-0"
             value={value?.qty}
             onChange={(e) => handleValueChange("qty", e.target.value)}
           />

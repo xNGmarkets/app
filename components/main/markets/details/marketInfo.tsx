@@ -36,7 +36,7 @@ export default function MarketInfo({ marketId }: { marketId: string }) {
           displayName={`${symbol} - ${ticker}`}
           initials={ticker}
           subText={company}
-          displayClassName="!text-lg"
+          subtextClassName="!text-lg"
         />
         <div className="bg-grey-25 grid size-10 place-items-center rounded-lg p-2">
           <Star size={18} id={id!} />

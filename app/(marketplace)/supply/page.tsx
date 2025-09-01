@@ -1,5 +1,5 @@
-import CurrencySwitcher from "@/components/currencySwitcher";
 import RenderSupplyTable from "@/components/main/supply/renderSupplyTable";
+import { SupplyUSDCAction } from "@/components/main/supply/supplyActions";
 import { SupplyStats } from "@/components/main/supply/supplyStats";
 import Button from "@/components/ui/button";
 import { SearchParams } from "@/types/global";
@@ -25,9 +25,8 @@ export default async function page({
           <div className="card !rounded-full px-3 py-1">
             <small>$1 - ₦1,530</small>
           </div>
-          <CurrencySwitcher />
           <Button className="outline-btn w-full md:w-fit">Withdraw</Button>
-          <Button className="pry-btn w-full md:w-fit">Borrow USDC</Button>
+          <SupplyUSDCAction />
         </article>
       </header>
 
