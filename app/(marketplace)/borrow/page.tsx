@@ -7,7 +7,7 @@ export default function page() {
   return (
     <main className="container !space-y-10 py-20">
       <header className="flex flex-wrap justify-between gap-4 pt-10">
-        <hgroup>
+        <hgroup className="!space-y-3">
           <h4 className="font-gabarito text-grey-900">Borrow</h4>
           <h5 className="text-grey-700 text-sm">
             Borrow USDC against xNGX stocks{" "}

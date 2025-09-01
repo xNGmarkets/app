@@ -33,6 +33,7 @@ export type SupplyHistoryTypes = {
 };
 
 export type SupplyTypes = {
+  id: string;
   date: string;
   asset: string;
   supplied: number;

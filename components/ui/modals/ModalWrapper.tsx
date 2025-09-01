@@ -17,7 +17,7 @@ type IModal = {
   id: string;
   icon: ReactNode;
   title: string | ReactNode;
-  subtitle: string;
+  subtitle: string | ReactNode;
   children: ReactNode;
   isOpen: { [key: string]: boolean };
   modalAction: (id: string) => void;
@@ -45,7 +45,7 @@ const ModalWrapper = ({
         <DialogContent
           className={cn("space-y-5 !border-0 bg-white", wrapperClass)}
         >
-          {icon}
+          <div className="flex items-center justify-center">{icon}</div>
 
           <DialogHeader className={headerClass}>
             <DialogTitle className={titleClass}>{title}</DialogTitle>
