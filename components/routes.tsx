@@ -1,4 +1,4 @@
-import { StakeIcon } from "@/public/svgs";
+import { StakeIcon, UserIcon } from "@/public/svgs";
 import { FaRegStar } from "react-icons/fa6";
 
 export const landingNavRoutes = [
@@ -27,10 +27,6 @@ export const navRoutes = [
     name: "Supply",
     path: "/supply",
   },
-  {
-    name: "Profile",
-    path: "/profile",
-  },
 ];
 
 export const accountRoutes = [
@@ -38,6 +34,13 @@ export const accountRoutes = [
     name: "Portfolio",
     path: "/portfolio",
     icon: <StakeIcon />,
+  },
+];
+export const moreNavRoutes = [
+  {
+    name: "Profile",
+    path: "/profile",
+    icon: <UserIcon />,
   },
   {
     name: "My Watchlist",

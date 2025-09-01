@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import { FaCheck } from "react-icons/fa6";
 import PopoverWrapper from "../popover/popoverWrapper";
 import { cn } from "@/libs/utils";
+import { useGlobalHooks } from "@/hooks/globalHooks";
 type OptionData = {
   label: string;
   value: string;
@@ -32,6 +33,7 @@ export const CustomSelect = ({
   contentsCassName,
   label,
 }: InputFieldProps) => {
+  const { show, setShow } = useGlobalHooks();
   // Find selected option if it's an object
   const selectedOption =
     (options as OptionData[])?.find((i) => i.value === value) ?? null;
@@ -49,6 +51,8 @@ export const CustomSelect = ({
           </span>
         }
         triggerClassName={className}
+        open={show}
+        setOpen={setShow}
       >
         <ul
           className={cn(
@@ -64,7 +68,10 @@ export const CustomSelect = ({
                 <li
                   key={idx}
                   className={`text-grey-700 hover:bg-grey-25 my-1 flex cursor-pointer items-center gap-2 px-3 py-2`}
-                  onClick={() => onChange(item)}
+                  onClick={() => {
+                    onChange(item);
+                    setShow(false);
+                  }}
                 >
                   {item}{" "}
                   {isActive ? (
@@ -84,7 +91,10 @@ export const CustomSelect = ({
               <li
                 key={option.value}
                 className={`text-grey-700 hover:bg-grey-25 my-1 flex cursor-pointer items-center justify-between gap-2 px-3 py-2`}
-                onClick={() => onChange(option.value)}
+                onClick={() => {
+                  onChange(option.value);
+                  setShow(false);
+                }}
               >
                 <span className="flex items-center gap-1">
                   {option.icon ? <>{option.icon}</> : null} {option.label}

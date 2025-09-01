@@ -7,6 +7,8 @@ export type View = "table" | "grid";
 type ViewLayoutValues = {
   view: View;
   handleView: (type: View) => void;
+  currency: string;
+  setCurrency: (val: string) => void;
 };
 
 const ViewLayoutContext = createContext<ViewLayoutValues>(
@@ -19,12 +21,15 @@ export default function ViewLayoutProvider({
   children: ReactNode;
 }) {
   const [view, setView] = useState<View>("grid");
+  const [currency, setCurrency] = useState("$");
 
   const handleView = (type: View) => setView(type);
 
-  const value: ViewLayoutValues = {
+  const value = {
     view,
     handleView,
+    currency,
+    setCurrency,
   };
 
   return (

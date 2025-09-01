@@ -1,5 +1,4 @@
 "use client";
-import CurrencySwitcher from "@/components/currencySwitcher";
 import LayoutSwitcher from "@/components/layoutSwitcher";
 import Search from "@/components/ui/search";
 import { CustomSelect } from "@/components/ui/select/customSelect";
@@ -27,8 +26,6 @@ export default function MarketFilter() {
         onChange={() => {}}
         placeholder="Top Volume"
       />
-
-      <CurrencySwitcher />
     </section>
   );
 }

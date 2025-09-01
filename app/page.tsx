@@ -11,11 +11,11 @@ import { VscPlayCircle } from "react-icons/vsc";
 export default async function Home() {
   return (
     <main className="overflow-x-hidden">
-      <section className="flex min-h-screen flex-wrap items-center justify-between gap-4 pt-10">
+      <section className="flex flex-wrap items-center justify-between gap-4 pt-30 pb-10">
         <article
           data-aos="fade-left"
           data-aos-duration="1500"
-          className="flex-1 !space-y-6 px-3 text-center lg:pl-16 lg:text-start"
+          className="h-72 flex-1 !space-y-6 px-3 text-center lg:pl-16 lg:text-start"
         >
           <h1>Own NGX stocks, 24/7 - simple</h1>
           <h5 className="text-lg">
@@ -27,8 +27,7 @@ export default async function Home() {
             <Button link href="/markets" className="pry-btn">
               Start trading
             </Button>
-            <Button className="alt-btn">
-              {" "}
+            <Button anchor href="#how-it-works" className="alt-btn">
               <VscPlayCircle /> How it works
             </Button>
             <div className="col-span-2 mt-2 flex items-center justify-center gap-3 lg:col-span-1 lg:justify-start">

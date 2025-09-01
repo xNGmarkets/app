@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "flagcdn.com",
+        hostname: "s3-symbol-logo.tradingview.com",
         port: "",
         pathname: "**",
         search: "",

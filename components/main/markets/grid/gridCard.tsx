@@ -36,7 +36,7 @@ export const GridCard = ({ data }: { data: MarketInstrument }) => {
           <p className="text-grey-700 !my-2 flex items-center gap-1 !text-xs">
             <span>{sector}</span>
             <BsDot />
-            <span>KYC{kycLevel}</span>
+            <span> {kycLevel}</span>
             <BsDot />
             <span>Band ±{bandPct}</span>
             <BsDot />

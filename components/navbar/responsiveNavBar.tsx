@@ -2,9 +2,9 @@
 import React from "react";
 import NavbarLink from "./navbarLink";
 import Hambugger from "./hambugger";
-import Button from "../ui/button";
 import { useGlobalHooks } from "@/hooks/globalHooks";
 import { accountRoutes, navRoutes } from "../routes";
+import { ConnectWallet } from "../../navActions";
 
 const ResponsiveNavBar = ({
   styles,
@@ -42,7 +42,7 @@ const ResponsiveNavBar = ({
               })}
             </ul>
             <ul
-              className={`flex grow flex-col justify-start space-y-5 lg:flex-row lg:justify-end lg:space-y-0`}
+              className={`flex w-full flex-col justify-start space-y-5 lg:grow lg:flex-row lg:justify-end lg:space-y-0`}
             >
               {accountRoutes?.map((route, index) => {
                 return (
@@ -59,9 +59,7 @@ const ResponsiveNavBar = ({
           </div>
 
           <div className="flex w-full items-center justify-start gap-3 gap-y-6 px-4 lg:w-fit lg:justify-end lg:px-0">
-            <Button className="pry-btn" type="button">
-              Connect wallet
-            </Button>
+            <ConnectWallet />
           </div>
         </article>
       </section>

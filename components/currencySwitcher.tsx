@@ -1,5 +1,5 @@
 "use client";
-import { useCurrencyContext } from "@/context/currencyContext";
+import { useViewLayoutContext } from "@/context/viewLayoutProvider";
 import React from "react";
 
 const currData = [
@@ -14,7 +14,7 @@ const currData = [
 ];
 
 export default function CurrencySwitcher() {
-  const { currency, setCurrency } = useCurrencyContext();
+  const { currency, setCurrency } = useViewLayoutContext();
 
   return (
     <div className="toggleWrapper">

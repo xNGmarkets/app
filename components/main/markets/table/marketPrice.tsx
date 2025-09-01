@@ -1,5 +1,5 @@
 "use client";
-import { useCurrencyContext } from "@/context/currencyContext";
+import { useViewLayoutContext } from "@/context/viewLayoutProvider";
 import { formatNumInThousands } from "@/utils/helper";
 import React, { useMemo } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
@@ -15,7 +15,7 @@ export const MarketPrice = ({
   price: number;
   subtext?: string;
 }) => {
-  const { currency } = useCurrencyContext();
+  const { currency } = useViewLayoutContext();
 
   const formatedPrice = useMemo(() => {
     return currency === "$" ? parseFloat(price?.toString()) / 1530 : price;
