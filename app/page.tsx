@@ -62,9 +62,13 @@ export default async function Home() {
         </figure>
       </section>
 
-      <MovingItems />
+      {/* this is just a quick fix for the how-it-wors section because of the fixed header */}
+      <div id="how-it-works">
+        <MovingItems />
+      </div>
 
-      <section id="how-it-works" className="container my-10">
+      {/* id above is supposed to be here */}
+      <section className="container my-10">
         <h3 data-aos="fade-down" className="text-center">
           How it works
         </h3>
