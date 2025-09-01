@@ -68,7 +68,7 @@ export default async function Home() {
       </div>
 
       {/* id above is supposed to be here */}
-      <section className="container my-10">
+      <section className="container mt-40 mb-10">
         <h3 data-aos="fade-down" className="text-center">
           How it works
         </h3>

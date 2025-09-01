@@ -2,6 +2,7 @@ import { Star } from "@/components/main/markets/star";
 import { BandPCT } from "@/components/main/markets/table/bandPCT";
 import { Dividends } from "@/components/main/markets/table/dividends";
 import { MarketPrice } from "@/components/main/markets/table/marketPrice";
+import { SupplyClaimAction } from "@/components/main/supply/supplyActions";
 import Button from "@/components/ui/button";
 import { Column } from "@/components/ui/tableComponent/tableComponent";
 import { UserAvatar } from "@/components/ui/UserAvatar";
@@ -491,24 +492,28 @@ export const marketListDataColData: Column<
 // Supply and Accrued Data
 export const supplyAccruedData = [
   {
+    id: "1",
     date: "8/23/2025, 1:38:59 PM",
     asset: "USDC",
     supplied: 5000,
     accrued: 0.0306,
   },
   {
+    id: "2",
     date: "8/23/2025, 1:38:59 PM",
     asset: "USDC",
     supplied: 300,
     accrued: 0.0306,
   },
   {
+    id: "3",
     date: "8/23/2025, 1:38:59 PM",
     asset: "USDC",
     supplied: 300,
     accrued: 0.0306,
   },
   {
+    id: "4",
     date: "8/23/2025, 1:38:59 PM",
     asset: "USDC",
     supplied: 300,
@@ -597,7 +602,7 @@ export const supplyColData: Column<SupplyTypes & { actions?: string }>[] = [
   {
     title: "Action",
     key: "actions",
-    render: () => <Button className="outline-btn">Claim</Button>,
+    render: (_, record) => <SupplyClaimAction data={record} />,
   },
 ];
 
