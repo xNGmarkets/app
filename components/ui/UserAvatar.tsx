@@ -6,7 +6,7 @@ type FileImageProps = {
   initials: string;
   subText?: string;
   className?: string;
-  displayClassName?: string;
+  subtextClassName?: string;
 };
 
 export const UserAvatar = ({
@@ -15,30 +15,31 @@ export const UserAvatar = ({
   displayName,
   subText,
   className,
-  displayClassName,
+  subtextClassName,
 }: FileImageProps) => {
   return (
     <article className="flex w-full items-center gap-2.5">
       {url ? (
         <div>
-          <figure className="relative size-8 overflow-hidden">
+          <figure className="relative size-8 overflow-hidden rounded-full">
             <Image
               src={url}
               alt="image"
               fill
+              sizes="100%"
               className="!h-full !w-full object-cover"
             />
           </figure>
         </div>
       ) : (
-        <UserInitials initials={initials} displayName={displayName} />
+        <UserInitials initials={initials} />
       )}
 
       <div className="flex-1">
-        <p className={`text-grey-900 !font-medium ${displayClassName}`}>
+        <p className={`text-grey-900 !font-medium ${className} `}>
           {displayName}
         </p>
-        <small className={`text-grey-500 !font-medium ${className}`}>
+        <small className={`text-grey-500 !font-medium ${subtextClassName}`}>
           {subText}
         </small>
       </div>

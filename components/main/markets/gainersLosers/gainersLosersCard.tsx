@@ -18,7 +18,8 @@ export default function GainersLosersCard({
           displayName={`${data?.symbol} - ${data?.ticker}`}
           initials={data?.ticker}
           subText={data?.company}
-          className="!text-[10px]"
+          className="!text-sm"
+          subtextClassName="!text-[10px]"
         />
       </div>
       <MarketPrice price={data?.lastPrice} className="text-end" />

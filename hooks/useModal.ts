@@ -2,29 +2,29 @@
 import { useState } from "react";
 
 export const useModal = () => {
-  const [openModals, setOpenModals] = useState<{ [key: string]: boolean }>({});
+  const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
   const [itemId, setItemId] = useState<string>("");
   const [getData, setGetData] = useState<{
     [key: string]: string | number;
   }>({});
 
   const openModal = (id: string) => {
-    setOpenModals((prev) => ({ ...prev, [id]: true }));
+    setIsOpen((prev) => ({ ...prev, [id]: true }));
     setItemId(id);
   };
 
   const closeModal = (id: string) => {
-    setOpenModals((prev) => ({ ...prev, [id]: false }));
+    setIsOpen((prev) => ({ ...prev, [id]: false }));
   };
 
   const toggleModal = (id: string) => {
-    setOpenModals((prev) => ({ ...prev, [id]: !prev[id] }));
+    setIsOpen((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   return {
     setItemId,
     itemId,
-    openModals,
+    isOpen,
     openModal,
     closeModal,
     toggleModal,

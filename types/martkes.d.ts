@@ -15,7 +15,7 @@ export type MarketInstrument = {
   bidPrice?: number; // NGN
   change24hPct: number; // e.g., 20.45 for +20.45%
   changes?: number[];
-  logo?: StaticImageData | null;
+  logo?: string | StaticImageData | null;
 };
 
 export type BorrowTypes = {
