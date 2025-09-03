@@ -665,3 +665,37 @@ export const borrrowColData: Column<BorrowTypes & { actions?: string }>[] = [
     render: () => <Button className="pry-btn">Repay</Button>,
   },
 ];
+
+export const stockHoldingColData: Column<BorrowTypes & { actions?: string }>[] =
+  [
+    {
+      title: "AMOUNTS",
+      key: "amounts",
+      render: (_, { amounts }) => <MarketPrice price={amounts} />,
+    },
+    {
+      title: "UNITS",
+      key: "units",
+      render: (_, { units }) => <>{units}</>,
+    },
+    {
+      title: "DEBTS (USDC)",
+      key: "debts",
+      render: (_, { debts }) => <>{debts}</>,
+    },
+    {
+      title: "LTV",
+      key: "ltv",
+      render: (_, { ltv }) => <BandPCT bandPct={ltv} />,
+    },
+    {
+      title: "HF",
+      key: "hf",
+      render: (_, { hf }) => <MarketPrice price={hf} />,
+    },
+    {
+      title: "Action",
+      key: "actions",
+      render: () => <Button className="pry-btn">Repay</Button>,
+    },
+  ];

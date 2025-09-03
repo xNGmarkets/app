@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
         <ul className="flex gap-2">
           <a
-            href="#"
+            href="https://t.me/xngmarkets"
             target="_blank"
             rel="noopener noreferrer"
             className="card grid !size-[50px] place-items-center !rounded-full"
@@ -30,7 +30,7 @@ const Footer = () => {
             <PiTelegramLogoDuotone size={20} className="text-grey-900" />
           </a>
           <a
-            href="#"
+            href="https://x.com/xngmarkets"
             target="_blank"
             rel="noopener noreferrer"
             className="card grid !size-[50px] place-items-center !rounded-full"
