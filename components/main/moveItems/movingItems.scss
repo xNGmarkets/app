@@ -1,0 +1,96 @@
+.movingText {
+  // width: 100%;
+  // background-color: #fff;
+  // margin-bottom: 5em;
+
+  .trending {
+    color: #fff !important;
+  }
+
+  .movingTextContainer {
+    overflow: hidden;
+  }
+
+  // h4 {
+  //   color: #ffda5d !important;
+
+  //   span {
+  //     color: #fff;
+  //   }
+  // }
+
+  .movingTextWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    // white-space: nowrap;
+    // animation: moveRight 20s linear infinite forwards;
+    // width: 100%;
+  }
+
+  .movingReverse {
+    display: flex;
+    gap: 30px;
+    white-space: nowrap;
+    animation: moveLeft 20s linear infinite forwards;
+    width: 100%;
+  }
+
+  @keyframes moveRight {
+    from {
+      transform: translateX(70%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes moveLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(70%);
+    }
+  }
+
+  .movingTextItem {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: var(--black);
+    font-size: 2.3rem;
+    //   display: inline-block;
+    //   padding-right: 20px; /* Adjust spacing between texts */
+  }
+
+  @media screen and (max-width: 600px) {
+    @keyframes moveRight {
+      from {
+        transform: translateX(30%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    @keyframes moveLeft {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(30%);
+      }
+    }
+
+    .movingTextItem {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .movingTextItem {
+      font-size: 0.9rem;
+    }
+  }
+}
