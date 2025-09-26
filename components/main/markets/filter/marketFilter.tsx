@@ -19,10 +19,10 @@ export default function MarketFilter() {
       />
       <CustomSelect
         name="sort"
-        defaultValue="dividendScore"
+        // defaultValue="dividendScore"
         options={sortData}
         className="w-full min-w-24 !py-3 lg:flex-1"
-        placeholder="Top Volume"
+        placeholder="Sort By"
       />
     </section>
   );

@@ -14,7 +14,7 @@ interface IUser extends Document {
 
 const UserSchema: Schema = new Schema<IUser>(
   {
-    address: { type: String, required: true, unique: true },
+    address: { type: String, required: true, unique: true, lowercase: true },
     email: { type: String, default: null, unique: true },
     kycStatus: {
       type: String,

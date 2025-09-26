@@ -5,11 +5,10 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cookieToInitialState, WagmiProvider } from "wagmi";
 import { AuthProvider } from "./authContext";
-import { MarketProvider } from "./marketContext";
 import { ModalProvider } from "./modalContext";
 import ViewLayoutProvider from "./viewLayoutProvider";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 export const Providers = ({
   children,
   cookies,
@@ -27,11 +26,9 @@ export const Providers = ({
           theme={lightTheme()}
         >
           <AuthProvider>
-            <MarketProvider>
-              <ViewLayoutProvider>
-                <ModalProvider>{children}</ModalProvider>
-              </ViewLayoutProvider>
-            </MarketProvider>
+            <ViewLayoutProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </ViewLayoutProvider>
           </AuthProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
