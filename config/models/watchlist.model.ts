@@ -1,11 +1,11 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface IWishlist extends Document {
+interface IWatchList extends Document {
   userId: Schema.Types.ObjectId;
   stockIds: Schema.Types.ObjectId[];
 }
 
-const WishlistSchema: Schema = new Schema<IWishlist>(
+const WatchListSchema: Schema = new Schema<IWatchList>(
   {
     userId: {
       type: Schema.Types.ObjectId,
@@ -25,5 +25,5 @@ const WishlistSchema: Schema = new Schema<IWishlist>(
   },
 );
 
-export default mongoose.models.Wishlist ||
-  mongoose.model<IWishlist>("Wishlist", WishlistSchema);
+export default mongoose.models.WatchList ||
+  mongoose.model<IWatchList>("WatchList", WatchListSchema);

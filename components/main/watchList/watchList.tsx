@@ -1,19 +1,22 @@
 "use client";
 import React from "react";
 import RenderMarkets from "../markets/renderMarkets";
-// import EmptyState from "@/components/ui/emptyStates";
+import { useAccount } from "wagmi";
+import { useWatchList } from "@/hooks/useWatchList";
+import EmptyState from "@/components/ui/emptyStates";
 
 export const WatchList = () => {
-  // const watchListData = [];
+  const { address } = useAccount();
+  const { isLoading, watchList } = useWatchList(address || "");
 
   // // If no favorites, show empty state
-  // if (!watchListData || watchListData.length === 0) {
-  //   return (
-  //     <EmptyState
-  //       title="No favorites yet"
-  //       subTitle="Start adding markets to your watchlist by clicking the star icon"
-  //     />
-  //   );
-  // }
-  return <RenderMarkets data={[]} />;
+  if (isLoading || watchList.length === 0) {
+    return (
+      <EmptyState
+        title="No favorites yet"
+        subTitle="Start adding markets to your watchList by clicking the star icon"
+      />
+    );
+  }
+  return <RenderMarkets data={watchList} />;
 };

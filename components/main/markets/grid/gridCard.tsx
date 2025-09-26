@@ -28,7 +28,7 @@ export const GridCard = ({ data }: { data: StockProps }) => {
 
   return (
     <li className="shadow-4xl card hover:bg-grey-25 !rounded-2xl bg-white p-5">
-      <article className="flex justify-between gap-2">
+      <article className="flex items-start justify-between gap-2">
         <div>
           <UserAvatar
             url={logo}

@@ -1,4 +1,3 @@
-// app/api/stocks/route.ts
 import { connectToDatabase } from "@/config";
 import stockModel from "@/config/models/stock.model";
 import { NextRequest, NextResponse } from "next/server";

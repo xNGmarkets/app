@@ -29,7 +29,7 @@ export const ChartScreen = ({ symbol }: { symbol: string }) => {
           "timezone": "Etc/UTC",
           "backgroundColor": "#ffffff",
           "gridColor": "rgba(46, 46, 46, 0.06)",
-          "watchlist": [],
+          "watchList": [],
           "withdateranges": false,
           "compareSymbols": [],
           "studies": [],
