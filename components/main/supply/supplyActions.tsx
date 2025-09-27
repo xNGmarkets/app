@@ -45,9 +45,13 @@ export const SupplyUSDCAction = () => {
               <Field
                 title="Deposit APY"
                 value="7.2%"
-                valuClassName="text-end"
+                valueClassName="text-end"
               />
-              <Field title="Utilization" value="41%" valuClassName="text-end" />
+              <Field
+                title="Utilization"
+                value="41%"
+                valueClassName="text-end"
+              />
               <Field
                 title="Pool supply"
                 value={<MarketPrice price={391527000} className="text-end" />}

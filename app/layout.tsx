@@ -4,6 +4,7 @@ import { defaultMetada } from "@/libs/metadata";
 import AOSAnimation from "@/utils/aosInit";
 import type { Metadata } from "next";
 import { Gabarito, Work_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 
 export const gabarito = Gabarito({
   subsets: ["latin"],
@@ -33,7 +34,7 @@ export default async function RootLayout({
         <AOSAnimation>
           <LandingNavbar />
           {children}
-
+          <Toaster />
           <Footer />
         </AOSAnimation>
       </body>

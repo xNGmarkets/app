@@ -30,12 +30,12 @@ interface StoreState {
 
 const usePriceAndQuantity = create<StoreState>((set) => ({
   price: 0,
-  quantity: 0,
+  quantity: 1,
 
   lowestPrice: 0,
   highestPrice: 100,
   minQuantity: 1,
-  maxQuantity: 10,
+  maxQuantity: 100,
 
   tradeMethod: "buy",
 
@@ -64,11 +64,12 @@ const usePriceAndQuantity = create<StoreState>((set) => ({
   setPrice: (value) =>
     set((state) => ({
       price: Math.min(Math.max(value, state.lowestPrice), state.highestPrice),
+      // price: value,
     })),
 
   setQuantity: (value) =>
-    set((state) => ({
-      quantity: Math.min(Math.max(value, state.minQuantity), state.maxQuantity),
+    set(() => ({
+      quantity: value,
     })),
 
   setPriceLimits: (lowest, highest) =>

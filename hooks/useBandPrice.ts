@@ -1,5 +1,5 @@
 import ORACLE_HUB_ABI from "@/config/abis/oraclehub.abi";
-import { ORACLE_HUB_CONTRACT } from "@/config/constants/contracts";
+import { ORACLE_HUB_CONTRACT } from "@/constants/contracts";
 import { useReadContract } from "wagmi";
 
 type BandData = {

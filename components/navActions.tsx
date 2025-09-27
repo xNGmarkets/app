@@ -8,7 +8,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useAccount } from "wagmi";
+import { VscDebugDisconnect } from "react-icons/vsc";
+import { useAccount, useDisconnect } from "wagmi";
 import CurrencySwitcher from "./currencySwitcher";
 import { moreNavRoutes } from "./routes";
 import Button from "./ui/button";
@@ -20,7 +21,7 @@ export const ConnectWallet = () => {
   const { openConnectModal } = useConnectModal();
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-4">
       <CurrencyToggle />
       {isConnected && address ? (
         <article className="card flex items-center gap-2 p-3">
@@ -43,6 +44,7 @@ export const ConnectWallet = () => {
 
 export const MoreNav = () => {
   const { show, setShow } = useGlobalHooks();
+  const { disconnect } = useDisconnect();
 
   return (
     <PopoverWrapper open={show} setOpen={setShow} className="mt-3">
@@ -58,6 +60,15 @@ export const MoreNav = () => {
             {name}
           </Link>
         ))}
+        <li>
+          <button
+            className="flex items-center gap-2 text-sm !text-red-500 lg:text-base"
+            onClick={() => disconnect}
+          >
+            <VscDebugDisconnect size={16} />
+            <span>Disconnect</span>
+          </button>
+        </li>
       </ul>
     </PopoverWrapper>
   );

@@ -1,6 +1,7 @@
 import Button from "@/components/ui/button";
 import Field from "@/components/ui/field";
 import { CustomSelect } from "@/components/ui/select/customSelect";
+import { useModalContext } from "@/context/modalContext";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { preferenceTypes, toleranceTypes } from "@/utils/constant";
 import React, { ReactNode } from "react";
@@ -8,7 +9,16 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 import { MarketPrice } from "../../table/marketPrice";
 
 export const LimitOrder = () => {
-  const { tradeMethod, setTradeMethod } = usePriceAndQuantity();
+  const { tradeMethod, setTradeMethod, quantity } = usePriceAndQuantity();
+  const { openModal } = useModalContext();
+
+  const handler = () => {
+    if (tradeMethod === "buy") {
+      openModal("buy-asset");
+    } else {
+      openModal("sell-asset");
+    }
+  };
   return (
     <section className="space-y-3">
       <div className="toggleWrapper !min-h-12 !max-w-3/6">
@@ -28,7 +38,13 @@ export const LimitOrder = () => {
       </div>
       <PriceInput label="Price" />
       <QtyInput label="Quantity" />
-      <Button className="pry-btn w-full">Place Limit BUY</Button>
+      <Button
+        disabled={!quantity}
+        className="pry-btn w-full capitalize"
+        onClick={handler}
+      >
+        Place Limit {tradeMethod}
+      </Button>
     </section>
   );
 };
@@ -47,14 +63,14 @@ export const MarketBuy = ({ price }: { price: number }) => {
           title="Within band"
           value="Yes"
           className="justify-between"
-          valuClassName="text-end"
+          valueClassName="text-end"
         />
-        <Field
+        {/* <Field
           title="Transaction fees"
           value="5 USDC"
           className="justify-between"
-          valuClassName="text-end"
-        />
+          valueClassName="text-end"
+        /> */}
       </ul>
       <Button className="pry-btn w-full">Buy now</Button>
     </section>
