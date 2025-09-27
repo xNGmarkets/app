@@ -10,26 +10,33 @@ export const MarketPrice = ({
   className,
   wrapperClassName,
   decimals = 2,
+  invert,
 }: {
   className?: string;
   wrapperClassName?: string;
   price: number;
   subtext?: string;
   decimals?: number;
+  invert?: boolean;
 }) => {
   const { currency } = useViewLayoutContext();
   const rate = useExchangeRate();
 
   const formattedPrice = useMemo(() => {
     if (!rate) return price;
+    if (invert) {
+      return currency === "$" ? price : price * rate;
+    }
     return currency === "$" ? price / rate : price;
-  }, [currency, price, rate]);
+  }, [currency, price, rate, invert]);
 
   return (
     <div className={wrapperClassName}>
       <h5 className={className}>
         {currency}
-        {formattedPrice?.toFixed(decimals)}
+        {formattedPrice?.toLocaleString("en-US", {
+          maximumFractionDigits: decimals,
+        })}
       </h5>
       {subtext ? (
         <small

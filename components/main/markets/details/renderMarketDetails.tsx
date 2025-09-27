@@ -1,8 +1,9 @@
 import PageTabs from "@/components/ui/PageTabs";
 import { SearchParams } from "@/types/global";
 import { StockProps } from "@/types/stock";
-import React from "react";
+import React, { useMemo } from "react";
 import { ChartScreen } from "./chartScreen";
+import MyOrder from "./MyOrder";
 import { OtherScreen } from "./otherScreen";
 
 const tabData = [
@@ -39,25 +40,26 @@ export default function RenderMarketDetails({
 }) {
   const activeTab = params?.tab || "charts";
 
-  let currentScreen;
+  const currentScreen = useMemo(() => {
+    switch (activeTab) {
+      case "financials":
+        return <OtherScreen content={data.finance || ""} />;
+      case "company-profile":
+        return <OtherScreen content={data?.profile || ""} />;
+      case "news":
+        return <OtherScreen content={data.news || ""} />;
+      case "dividend-history":
+        return <OtherScreen content={data.dividendHistory || ""} />;
+      default:
+        return (
+          <>
+            <ChartScreen symbol={data?.ticker?.split("-")[1]} />
+            <MyOrder stockAddress={data?.evmAddress} />
+          </>
+        );
+    }
+  }, [activeTab, data]);
 
-  switch (activeTab) {
-    case "financials":
-      currentScreen = <OtherScreen content={data.finance || ""} />;
-      break;
-    case "company-profile":
-      currentScreen = <OtherScreen content={data?.profile || ""} />;
-      break;
-    case "news":
-      currentScreen = <OtherScreen content={data.news || ""} />;
-      break;
-    case "dividend-history":
-      currentScreen = <OtherScreen content={data.dividendHistory || ""} />;
-      break;
-
-    default:
-      currentScreen = <ChartScreen symbol={data?.ticker?.split("-")[1]} />;
-  }
   return (
     <main className="border-grey-25 w-full border-x lg:w-[60%]">
       <PageTabs

@@ -12,7 +12,6 @@ import {
 } from "@/constants/contracts";
 import { useModalContext } from "@/context/modalContext";
 import { approveTokenForSpend, buyAndSellStock } from "@/helper";
-import useExchangeRate from "@/hooks/useExchangeRate";
 import useGetAccountID from "@/hooks/useGetAccountID";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { StockProps } from "@/types/stock";
@@ -42,7 +41,7 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
   const { data: walletClient } = useWalletClient();
   const { openConnectModal } = useConnectModal();
   const accountId = useGetAccountID();
-  const rate = useExchangeRate();
+  // const rate = useExchangeRate();
 
   const resetAndClose = () => {
     setIsBuying(false);
@@ -82,7 +81,7 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
         accountId,
         stock.evmAddress as `0x${string}`,
       );
-      console.log("is token associated", isTokenAssociated);
+
       if (isTokenAssociated) {
         setIsAssociated(isTokenAssociated && isUsdcAssociated);
         const kycGranted = await grantKyc(
@@ -106,8 +105,6 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
         functionName: "associate",
       });
 
-      console.log(isTokenAssociated && isUsdcAssociated);
-
       setIsAssociated(isTokenAssociated && isUsdcAssociated);
       const kycGranted = await grantKyc(
         accountId,
@@ -122,10 +119,10 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
   }
 
   const buyHandler = async () => {
-    if (!stock?.evmAddress || !quantity || !price || !rate) return;
+    if (!stock?.evmAddress || !quantity || !price) return;
     setIsBuying(true);
-    const amountToTrade = (price / rate) * quantity;
-    const amountToTradeFormatted = parseUnits(amountToTrade.toString(), 6);
+    // const amountToTrade = (price / rate) * quantity;
+    const amountToTradeFormatted = parseUnits((price * quantity).toString(), 6);
 
     try {
       // Associate the stock token with the user's wallet
@@ -138,13 +135,13 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
       // if (!isKycGranted) {
       //   throw new Error("KYC grant failed");
       // }
-      if (!isTokenSpendApproved) {
-        await approveTokenForSpend(
-          USDC_XNG_CONTRACT,
-          amountToTradeFormatted,
-          DIRECT_SETTLE_ADAPTER_CONTRACT,
-        );
-      }
+
+      await approveTokenForSpend(
+        USDC_XNG_CONTRACT,
+        amountToTradeFormatted,
+        DIRECT_SETTLE_ADAPTER_CONTRACT,
+      );
+
       setIsTokenSpendApproved(true);
       setIsPlacingOrder(true);
       await buyAndSellStock(stock.evmAddress, price, quantity, SIDE.Buy);

@@ -43,9 +43,8 @@ export type SupplyHistoryTypes = {
 };
 
 export type SupplyTypes = {
-  id: string;
-  date: string;
-  asset: string;
-  supplied: number;
-  accrued: number;
+  amount: number;
+  createdAt: string;
+  updatedAt: string;
+  _id: string;
 };

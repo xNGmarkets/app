@@ -8,7 +8,6 @@ import { SIDE } from "@/constants";
 import { DIRECT_SETTLE_ADAPTER_CONTRACT } from "@/constants/contracts";
 import { useModalContext } from "@/context/modalContext";
 import { approveTokenForSpend, buyAndSellStock } from "@/helper";
-import useExchangeRate from "@/hooks/useExchangeRate";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { StockProps } from "@/types/stock";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
@@ -32,7 +31,7 @@ export const SellAction = ({ stock }: SellActionProps) => {
   const { isConnected } = useAccount();
   const { data: walletClient } = useWalletClient();
   const { openConnectModal } = useConnectModal();
-  const rate = useExchangeRate();
+  // const rate = useExchangeRate();
 
   const resetAndClose = () => {
     setIsTokenSpendApproved(false);
@@ -41,19 +40,18 @@ export const SellAction = ({ stock }: SellActionProps) => {
   };
 
   const sellHandler = async () => {
-    if (!stock?.evmAddress || !quantity || !price || !rate) return;
+    if (!stock?.evmAddress || !quantity || !price) return;
     setIsSelling(true);
-    const amountToTrade = (price / rate) * quantity;
-    const amountToTradeFormatted = parseUnits(amountToTrade.toString(), 6);
+    // const amountToTrade = (price / rate) * quantity;
+    const amountToTradeFormatted = parseUnits((price * quantity).toString(), 6);
 
     try {
-      if (!isTokenSpendApproved) {
-        await approveTokenForSpend(
-          stock.evmAddress,
-          amountToTradeFormatted,
-          DIRECT_SETTLE_ADAPTER_CONTRACT,
-        );
-      }
+      await approveTokenForSpend(
+        stock.evmAddress,
+        amountToTradeFormatted,
+        DIRECT_SETTLE_ADAPTER_CONTRACT,
+      );
+
       setIsTokenSpendApproved(true);
       await buyAndSellStock(stock.evmAddress, price, quantity, SIDE.Sell);
       //close modal and reset

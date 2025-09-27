@@ -38,7 +38,7 @@ export const ChartScreen = ({ symbol }: { symbol: string }) => {
     if (container.current) container.current.appendChild(script);
   }, [symbol]);
   return (
-    <div className="h-[30rem] max-h-dvh">
+    <div className="h-[30rem] max-h-dvh overflow-hidden">
       <div
         className="tradingview-widget-container"
         ref={container}
@@ -49,38 +49,6 @@ export const ChartScreen = ({ symbol }: { symbol: string }) => {
           style={{ height: "calc(100% - 32px)", width: "100%" }}
         ></div>
       </div>
-      {/* <article className="container grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-        <ul className="card !space-y-4 !p-4">
-          <li className="text-grey-900 flex justify-between gap-2">Asks</li>
-          <li className="text-error-500 flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>300</span>
-          </li>
-          <li className="text-error-500 flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>220</span>
-          </li>
-          <li className="text-error flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>160</span>
-          </li>
-        </ul>
-        <ul className="card !space-y-4 !p-4">
-          <li className="text-grey-900 flex justify-between gap-2">Bids</li>
-          <li className="text-success-100 flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>300</span>
-          </li>
-          <li className="text-success-100 flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>220</span>
-          </li>
-          <li className="text-success-100 flex justify-between gap-2 !text-sm">
-            <span>₦283.60</span>
-            <span>160</span>
-          </li>
-        </ul>
-      </article> */}
     </div>
   );
 };

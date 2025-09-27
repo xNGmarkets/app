@@ -1,6 +1,5 @@
 import { BandPCT } from "@/components/main/markets/table/bandPCT";
 import { MarketPrice } from "@/components/main/markets/table/marketPrice";
-import { SupplyClaimAction } from "@/components/main/supply/supplyActions";
 import Button from "@/components/ui/button";
 import { Column } from "@/components/ui/tableComponent/tableComponent";
 import {
@@ -17,7 +16,7 @@ import {
   MarketInstrument,
   SupplyHistoryTypes,
   SupplyTypes,
-} from "@/types/martkes";
+} from "@/types/market";
 
 export const compareBroker = [
   {
@@ -358,7 +357,7 @@ export const marketCards: MarketInstrument[] = [
 
 export const tradeTypes = [
   { label: "Limit Order", value: "limit-order", cta: "Place Limit BUY" },
-  { label: "Market Buy", value: "market-buy", cta: "Buy now" },
+  // { label: "Market Buy", value: "market-buy", cta: "Buy now" },
   // { label: "Primary Mint", value: "mint", cta: "Buy now" },
   // { label: "Primary Burn", value: "burn", cta: "Submit burn for USDC" },
 ];
@@ -509,29 +508,19 @@ export const transactionHistoryData = [
 export const supplyColData: Column<SupplyTypes & { actions?: string }>[] = [
   {
     title: "DATE",
-    key: "date",
-    render: (_, { date }) => <> {date}</>,
+    key: "createdAt",
+    render: (_, { createdAt }) => <>{new Date(createdAt).toLocaleString()}</>,
   },
   {
     title: "ASSET",
-    key: "asset",
-    render: (_, { asset }) => <>{asset}</>,
+    key: "actions",
+    render: () => <>USDC</>,
   },
 
   {
     title: "SUPPLIED",
-    key: "supplied",
-    render: (_, { supplied }) => <MarketPrice price={supplied} />,
-  },
-  {
-    title: "ACCRUED (USDC)",
-    key: "accrued",
-    render: (_, { accrued }) => <MarketPrice price={accrued} />,
-  },
-  {
-    title: "Action",
-    key: "actions",
-    render: (_, record) => <SupplyClaimAction data={record} />,
+    key: "amount",
+    render: (_, { amount }) => <MarketPrice price={amount} invert />,
   },
 ];
 
