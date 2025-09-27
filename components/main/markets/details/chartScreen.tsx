@@ -38,7 +38,7 @@ export const ChartScreen = ({ symbol }: { symbol: string }) => {
     if (container.current) container.current.appendChild(script);
   }, [symbol]);
   return (
-    <div className="h-96">
+    <div className="h-[30rem] max-h-dvh">
       <div
         className="tradingview-widget-container"
         ref={container}

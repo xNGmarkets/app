@@ -3,22 +3,22 @@ import { ReactNode } from "react";
 const Field = ({
   title,
   value,
-  valuClassName,
+  valueClassName,
 }: {
   title: string | ReactNode;
   value: string | ReactNode;
   className?: string;
-  valuClassName?: string;
+  valueClassName?: string;
 }) => {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center justify-between gap-3">
       <h5 className="text-grey-700 w-4/12 !text-xs whitespace-nowrap">
         {title}
       </h5>
-      <div className="flex-1">
+      <div>
         {typeof value === "string" ? (
           <h5
-            className={`text-grey-900 text-sm whitespace-break-spaces ${valuClassName}`}
+            className={`text-grey-900 text-sm whitespace-break-spaces ${valueClassName}`}
           >
             {value}
           </h5>

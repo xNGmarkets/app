@@ -53,6 +53,8 @@ export const useWatchList = (address: string) => {
     queryKey: ["watchList", address],
     queryFn: () => fetchWatchList(address),
     enabled: !!address,
+    retry: false,
+    refetchOnMount: false,
   });
 
   const mutation = useMutation({
