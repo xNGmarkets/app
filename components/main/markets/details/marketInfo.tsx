@@ -10,6 +10,8 @@ import { FaStar } from "react-icons/fa6";
 // import { CoinsIcon, VideoIcon } from "@/public/svgs";
 import useBandPrice from "@/hooks/useBandPrice";
 import useExchangeRate from "@/hooks/useExchangeRate";
+import useGetBestPrices from "@/hooks/useGetBestPrices";
+import { useGetOrdersByStockAddress } from "@/hooks/useGetOrders";
 import { StockProps } from "@/types/stock";
 
 export default function MarketInfo({ data }: { data: StockProps }) {
@@ -23,13 +25,11 @@ export default function MarketInfo({ data }: { data: StockProps }) {
     dividendRatio,
   } = data;
 
-  const {
-    band,
-    price,
-    lowestPrice: bidPrice,
-    highestPrice: askPrice,
-  } = useBandPrice(evmAddress);
+  const { band, price, lowestPrice, highestPrice } = useBandPrice(evmAddress);
   const rate = useExchangeRate();
+
+  const { bidPrice, askPrice } = useGetBestPrices(evmAddress);
+  const { asks, bids } = useGetOrdersByStockAddress(evmAddress);
 
   return (
     <aside className="w-full !space-y-3 px-3 py-5 lg:w-[27%] lg:px-6">
@@ -110,13 +110,13 @@ export default function MarketInfo({ data }: { data: StockProps }) {
           <div className="text-grey-900 flex items-center">
             <MarketPrice
               className="text-grey-900 flex items-center gap-1 !text-base"
-              price={bidPrice}
+              price={lowestPrice}
               decimals={1}
             />{" "}
             -{" "}
             <MarketPrice
               className="text-grey-900 flex items-center gap-1 !text-base"
-              price={askPrice}
+              price={highestPrice}
               decimals={1}
             />
           </div>
@@ -131,6 +131,45 @@ export default function MarketInfo({ data }: { data: StockProps }) {
           />
         </li> */}
       </ul>
+
+      {asks?.length > 0 || bids?.length > 0 ? (
+        <div className="!space-y-3">
+          {asks.length > 0 ? (
+            <ul className="card !space-y-4 !p-4">
+              <li className="text-grey-900 flex justify-between gap-2">
+                <span>Asks</span>
+                <span>Qty</span>
+              </li>
+              {asks.map((order) => (
+                <li
+                  key={order.id}
+                  className="text-error-500 flex justify-between gap-2 !text-sm"
+                >
+                  <MarketPrice price={order.price} />
+                  <span>{order.quantity}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {bids.length > 0 ? (
+            <ul className="card !space-y-4 !p-4">
+              <li className="text-grey-900 flex justify-between gap-2">
+                <span>Bids</span>
+                <span>Qty</span>
+              </li>
+              {bids.map((order) => (
+                <li
+                  key={order.id}
+                  className="text-success-100 flex justify-between gap-2 !text-sm"
+                >
+                  <MarketPrice price={order.price} />
+                  <span>{order.quantity}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      ) : null}
     </aside>
   );
 }

@@ -358,7 +358,7 @@ export const marketCards: MarketInstrument[] = [
 
 export const tradeTypes = [
   { label: "Limit Order", value: "limit-order", cta: "Place Limit BUY" },
-  { label: "Market Buy", value: "market-buy", cta: "Buy now" },
+  // { label: "Market Buy", value: "market-buy", cta: "Buy now" },
   // { label: "Primary Mint", value: "mint", cta: "Buy now" },
   // { label: "Primary Burn", value: "burn", cta: "Submit burn for USDC" },
 ];

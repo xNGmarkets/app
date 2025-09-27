@@ -7,6 +7,7 @@ import { BsDot } from "react-icons/bs";
 import { Star } from "../star";
 import { Dividends } from "../table/dividends";
 import { MarketPrice } from "../table/marketPrice";
+import useGetBestPrices from "@/hooks/useGetBestPrices";
 
 export const GridCard = ({ data }: { data: StockProps }) => {
   const {
@@ -19,12 +20,9 @@ export const GridCard = ({ data }: { data: StockProps }) => {
     dividendRatio,
     evmAddress,
   } = data;
-  const {
-    band,
-    price,
-    lowestPrice: bidPrice,
-    highestPrice: askPrice,
-  } = useBandPrice(evmAddress);
+  const { band, price } = useBandPrice(evmAddress);
+
+  const { bidPrice, askPrice } = useGetBestPrices(evmAddress);
 
   return (
     <li className="shadow-4xl card hover:bg-grey-25 !rounded-2xl bg-white p-5">

@@ -1,3 +1,4 @@
+import { cn } from "@/libs/utils";
 import { ReactNode } from "react";
 import {
   Table,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "./table";
-import { cn } from "@/libs/utils";
 
 export interface Column<T> {
   title: string;
@@ -44,7 +44,7 @@ export default function TableComponent<T extends Record<string, any>>(
   return (
     <Table
       containerClassName={containerClassName}
-      className={` ${className ? className : ""} `}
+      className={`${className ? className : ""} `}
     >
       {title && <TableCaption className="sr-only">{title}</TableCaption>}
 
@@ -56,6 +56,7 @@ export default function TableComponent<T extends Record<string, any>>(
               className={cn(
                 "text-grey-500 text-sm font-medium whitespace-nowrap uppercase",
                 column?.noMobile ? "hidden lg:table-cell" : "",
+                column.headerClassName,
               )}
             >
               {column.title}
@@ -79,6 +80,7 @@ export default function TableComponent<T extends Record<string, any>>(
                     "text-grey-800 py-5 font-medium whitespace-nowrap",
                     column?.noMobile ? "hidden lg:table-cell" : "",
                     handleRowClick ? "cursor-pointer" : "",
+                    column.columnClassName,
                   )}
                 >
                   {column.render
