@@ -216,9 +216,7 @@ export const QtyInput = ({ label }: { label?: string | ReactNode }) => {
         </button>
         <div className="flex flex-1 items-center justify-center text-base">
           <input
-            name=""
-            id=""
-            type="text"
+            type="number"
             placeholder="e.g, 100"
             className="w-full bg-transparent text-center focus:border-0 focus:outline-0"
             value={quantity}

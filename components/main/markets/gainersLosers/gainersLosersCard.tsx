@@ -1,6 +1,6 @@
 import { SparkLineChart } from "@/components/chart/sparklineChart";
 import { UserAvatar } from "@/components/ui/UserAvatar";
-import { MarketInstrument } from "@/types/martkes";
+import { MarketInstrument } from "@/types/market";
 import { StaticImageData } from "next/image";
 import React from "react";
 import { MarketPrice } from "../table/marketPrice";
