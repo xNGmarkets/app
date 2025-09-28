@@ -66,31 +66,42 @@ export default function TableComponent<T extends Record<string, any>>(
       </TableHeader>
 
       <TableBody>
-        {data.map((row, rowIndex) => (
-          <TableRow
-            key={row.id || rowIndex}
-            onClick={() => handleRowClick && handleRowClick(row)}
-            className="hover:bg-grey-25"
-          >
-            {columns.map((column) => {
-              return (
-                <TableCell
-                  key={`${rowIndex}-${column.key.toString()}`}
-                  className={cn(
-                    "text-grey-800 py-5 font-medium whitespace-nowrap",
-                    column?.noMobile ? "hidden lg:table-cell" : "",
-                    handleRowClick ? "cursor-pointer" : "",
-                    column.columnClassName,
-                  )}
-                >
-                  {column.render
-                    ? column.render(row[column.key], row)
-                    : (row[column.key] as ReactNode)}
-                </TableCell>
-              );
-            })}
+        {data?.length > 0 ? (
+          data.map((row, rowIndex) => (
+            <TableRow
+              key={row.id || rowIndex}
+              onClick={() => handleRowClick && handleRowClick(row)}
+              className="hover:bg-grey-25"
+            >
+              {columns.map((column) => {
+                return (
+                  <TableCell
+                    key={`${rowIndex}-${column.key.toString()}`}
+                    className={cn(
+                      "text-grey-800 py-5 font-medium whitespace-nowrap",
+                      column?.noMobile ? "hidden lg:table-cell" : "",
+                      handleRowClick ? "cursor-pointer" : "",
+                      column.columnClassName,
+                    )}
+                  >
+                    {column.render
+                      ? column.render(row[column.key], row)
+                      : (row[column.key] as ReactNode)}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          ))
+        ) : (
+          <TableRow>
+            <TableCell
+              className="text-grey-800/50 py-4 text-center text-sm font-medium"
+              colSpan={columns.length}
+            >
+              No row
+            </TableCell>
           </TableRow>
-        ))}
+        )}
       </TableBody>
     </Table>
   );

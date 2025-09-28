@@ -157,9 +157,9 @@ export const SupplyWithdrawalAction = () => {
           subtitle="You are about to withdraw your supplied USDC"
           titleClass="!text-2xl font-semibold"
           headerClass="justify-center items-center gap-2"
-          wrapperClass="!max-w-xl"
+          wrapperClass="!max-w-[28.125rem]"
         >
-          <form action="" className="space-y-4">
+          <div className="space-y-4">
             <div>
               <div className="mb-3 flex items-center justify-between gap-2">
                 <p className="text-grey-700 !text-sm">
@@ -185,7 +185,7 @@ export const SupplyWithdrawalAction = () => {
                 {isPending ? "Withdrawing..." : "Withdraw"}
               </Button>
             </DialogFooter>
-          </form>
+          </div>
         </ModalWrapper>
       )}
     </div>

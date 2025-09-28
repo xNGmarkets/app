@@ -45,8 +45,9 @@ const ModalWrapper = ({
         <DialogContent
           className={cn("space-y-5 !border-0 bg-white", wrapperClass)}
         >
-          <div className="flex items-center justify-center">{icon}</div>
-
+          {icon ? (
+            <div className="flex items-center justify-center">{icon}</div>
+          ) : null}
           <DialogHeader className={headerClass}>
             <DialogTitle className={titleClass}>{title}</DialogTitle>
             <DialogDescription className={subtitleClass}>
