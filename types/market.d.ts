@@ -19,11 +19,12 @@ export type MarketInstrument = {
 };
 
 export type BorrowTypes = {
-  amounts: number;
+  _id: string;
+  amount: number;
   units: number;
-  debts: number;
+  usdcDebt: number;
   ltv: number;
-  hf: number;
+  isRepaid: boolean;
 };
 
 export type StockHoldingTypes = {

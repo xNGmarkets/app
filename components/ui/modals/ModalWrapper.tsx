@@ -1,3 +1,5 @@
+import { useModalContext } from "@/context/modalContext";
+import { cn } from "@/libs/utils";
 import React, { ReactNode } from "react";
 import {
   Dialog,
@@ -6,8 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./dialog";
-import { cn } from "@/libs/utils";
-import { useModalContext } from "@/context/modalContext";
 
 type IModal = {
   subtitleClass: string;
@@ -21,6 +21,7 @@ type IModal = {
   children: ReactNode;
   isOpen: { [key: string]: boolean };
   modalAction: (id: string) => void;
+  modal?: boolean;
 };
 
 const ModalWrapper = ({
@@ -33,6 +34,7 @@ const ModalWrapper = ({
   children,
   headerClass,
   wrapperClass,
+  modal = true,
 }: Partial<IModal>) => {
   const { closeModal, isOpen } = useModalContext();
 
@@ -41,6 +43,7 @@ const ModalWrapper = ({
       <Dialog
         open={isOpen[String(id)]}
         onOpenChange={(isOpen) => !isOpen && closeModal(String(id))}
+        modal={modal}
       >
         <DialogContent
           className={cn("space-y-5 !border-0 bg-white", wrapperClass)}

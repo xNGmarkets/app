@@ -2,7 +2,7 @@
 import { useGlobalHooks } from "@/hooks/globalHooks";
 import { cn } from "@/libs/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode, useMemo, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import PopoverWrapper from "../popover/popoverWrapper";
 
@@ -43,11 +43,15 @@ export const CustomSelect = ({
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  const value = searchParams.get(name) || defaultValue;
+  const [value, setValue] = useState(searchParams.get(name) || defaultValue);
   const selectedOption = useMemo(
     () => (options as OptionData[])?.find((i) => i.value === value) ?? null,
     [value, options],
   );
+
+  // useEffect(() => {
+  //   if (name) setValue(searchParams.get(name) || defaultValue);
+  // }, [searchParams, defaultValue, name]);
 
   const handleFilter = (value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -57,11 +61,12 @@ export const CustomSelect = ({
     } else {
       params.delete(name);
     }
+    setValue(value);
     replace(`${pathname}?${params.toString()}`);
   };
 
   return (
-    <div>
+    <div className="relative">
       {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
       <PopoverWrapper
         selected={

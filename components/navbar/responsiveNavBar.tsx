@@ -41,10 +41,10 @@ const ResponsiveNavBar = ({
                 );
               })}
             </ul>
-            {/* <ul
+            <ul
               className={`flex w-full flex-col justify-start space-y-5 lg:grow lg:flex-row lg:justify-end lg:space-y-0`}
             >
-              {accountRoutes?.map((route, index) => {
+              {/* {accountRoutes?.map((route, index) => {
                 return (
                   <NavbarLink
                     key={index}
@@ -54,8 +54,8 @@ const ResponsiveNavBar = ({
                     action={() => handleToggle("navbar")}
                   />
                 );
-              })}
-            </ul> */}
+              })} */}
+            </ul>
           </div>
 
           <div className="flex w-full items-center justify-start gap-3 gap-y-6 px-4 lg:w-fit lg:justify-end lg:px-0">

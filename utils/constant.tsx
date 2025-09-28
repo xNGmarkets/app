@@ -1,3 +1,4 @@
+import { BorrowRepayAction } from "@/components/main/borrow/borrowActions";
 import { BandPCT } from "@/components/main/markets/table/bandPCT";
 import { MarketPrice } from "@/components/main/markets/table/marketPrice";
 import Button from "@/components/ui/button";
@@ -554,8 +555,8 @@ export const transactionHisoryColData: Column<
 export const borrowColData: Column<BorrowTypes & { actions?: string }>[] = [
   {
     title: "AMOUNTS",
-    key: "amounts",
-    render: (_, { amounts }) => <MarketPrice price={amounts} />,
+    key: "amount",
+    render: (_, { amount }) => <MarketPrice price={amount} forceCurrency="$" />,
   },
   {
     title: "UNITS",
@@ -564,8 +565,8 @@ export const borrowColData: Column<BorrowTypes & { actions?: string }>[] = [
   },
   {
     title: "DEBTS (USDC)",
-    key: "debts",
-    render: (_, { debts }) => <>{debts}</>,
+    key: "usdcDebt",
+    render: (_, { usdcDebt }) => <>{usdcDebt}</>,
   },
   {
     title: "LTV",
@@ -573,14 +574,9 @@ export const borrowColData: Column<BorrowTypes & { actions?: string }>[] = [
     render: (_, { ltv }) => <BandPCT bandPct={ltv} />,
   },
   {
-    title: "HF",
-    key: "hf",
-    render: (_, { hf }) => <MarketPrice price={hf} />,
-  },
-  {
     title: "Action",
     key: "actions",
-    render: () => <Button className="pry-btn mr-0 ml-auto">Repay</Button>,
+    render: (_, record) => <BorrowRepayAction record={record} />,
     headerClassName: "text-right !pr-14",
   },
 ];
@@ -589,8 +585,8 @@ export const stockHoldingColData: Column<BorrowTypes & { actions?: string }>[] =
   [
     {
       title: "AMOUNTS",
-      key: "amounts",
-      render: (_, { amounts }) => <MarketPrice price={amounts} />,
+      key: "amount",
+      render: (_, { amount }) => <MarketPrice price={amount} />,
     },
     {
       title: "UNITS",
@@ -599,18 +595,13 @@ export const stockHoldingColData: Column<BorrowTypes & { actions?: string }>[] =
     },
     {
       title: "DEBTS (USDC)",
-      key: "debts",
-      render: (_, { debts }) => <>{debts}</>,
+      key: "usdcDebt",
+      render: (_, { usdcDebt }) => <>{usdcDebt}</>,
     },
     {
       title: "LTV",
       key: "ltv",
       render: (_, { ltv }) => <BandPCT bandPct={ltv} />,
-    },
-    {
-      title: "HF",
-      key: "hf",
-      render: (_, { hf }) => <MarketPrice price={hf} />,
     },
     {
       title: "Action",

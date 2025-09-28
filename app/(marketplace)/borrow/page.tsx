@@ -1,3 +1,4 @@
+import { getStocks } from "@/app/actions/stocks";
 import APR from "@/components/main/borrow/APR";
 import { BorrowUSDCAction } from "@/components/main/borrow/borrowActions";
 import { BorrowStats } from "@/components/main/borrow/borrowStats";
@@ -5,7 +6,8 @@ import { TableWrapper } from "@/components/main/borrow/tableWrapper";
 import Rate from "@/components/main/Rate";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const stocks = await getStocks();
   return (
     <main className="container !space-y-10 py-20">
       <header className="flex flex-wrap justify-between gap-4 pt-10">
@@ -15,7 +17,7 @@ export default function page() {
         </hgroup>
         <article className="flex flex-wrap items-center gap-2">
           <Rate />
-          <BorrowUSDCAction />
+          <BorrowUSDCAction stocks={stocks} />
         </article>
       </header>
 
