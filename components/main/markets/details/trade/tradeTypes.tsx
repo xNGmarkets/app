@@ -13,6 +13,11 @@ export const LimitOrder = () => {
   const { openModal } = useModalContext();
 
   const handler = () => {
+    const agreedToTerms = localStorage.getItem("agreedToTerms");
+    if (!agreedToTerms) {
+      openModal("terms");
+      return;
+    }
     if (tradeMethod === "buy") {
       openModal("buy-asset");
     } else {
