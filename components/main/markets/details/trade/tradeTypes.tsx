@@ -235,3 +235,57 @@ export const QtyInput = ({ label }: { label?: string | ReactNode }) => {
     </article>
   );
 };
+
+export const CustomQuantityInput = ({
+  setQuantity,
+  quantity,
+  label,
+  minimum = 0,
+  maximum,
+}: {
+  label?: string | ReactNode;
+  minimum?: number;
+  maximum?: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  quantity: number;
+}) => {
+  const increaseQuantity = () => {
+    if (maximum) {
+      if (quantity >= maximum) {
+        setQuantity(maximum);
+      }
+    } else {
+      setQuantity((quantity) => quantity + 1);
+    }
+  };
+  const decreaseQuantity = () => {
+    setQuantity((quantity) => Math.max(quantity - 1, minimum));
+  };
+
+  return (
+    <article>
+      {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
+      <div className="card flex min-h-[44px] items-center justify-between">
+        <button
+          className="btn !text-grey-600"
+          onClick={decreaseQuantity}
+          disabled={!quantity}
+        >
+          <FaMinus />
+        </button>
+        <div className="flex flex-1 items-center justify-center text-base">
+          <input
+            type="number"
+            placeholder="e.g, 100"
+            className="w-full bg-transparent text-center focus:border-0 focus:outline-0"
+            value={Number(quantity).toString()}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+        </div>
+        <button className="btn !text-grey-600" onClick={increaseQuantity}>
+          <FaPlus />
+        </button>
+      </div>
+    </article>
+  );
+};
