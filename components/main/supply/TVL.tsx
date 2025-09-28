@@ -6,7 +6,7 @@ const TVL = () => {
   const totalLockedValue = useSupplyTvl();
   return (
     <h5 className="text-grey-700 text-sm">
-      TOTAL SUPPLY (TVL):{" "}
+      TOTAL SUPPLIED (TVL):{" "}
       <span className="text-warning-500">
         {totalLockedValue.toLocaleString()} USDC
       </span>
