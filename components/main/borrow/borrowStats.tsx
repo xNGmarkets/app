@@ -1,14 +1,21 @@
 "use client";
-import React from "react";
+import useGetPortfolio from "@/hooks/useGetPortfolio";
+import React, { useMemo } from "react";
 import { MarketPrice } from "../markets/table/marketPrice";
 
-const statsData = [
-  { label: "Total collateral", value: 20000 },
-  { label: "Current debt", value: 230, subtext: "Outstanding USDC" },
-  { label: "Borrow capacity left", value: 340000 },
-  { label: "Weighted LTV", value: "7.5%" },
-];
 export const BorrowStats = () => {
+  const { borrow, ltvCurrent, maxBorrow, collateralValue } = useGetPortfolio();
+
+  const statsData = useMemo(
+    () => [
+      { label: "Total collateral", value: collateralValue },
+      { label: "Current debt", value: borrow, subtext: "Outstanding USDC" },
+      { label: "Borrow capacity left", value: maxBorrow },
+      { label: "Weighted LTV", value: `${ltvCurrent}%` },
+    ],
+    [ltvCurrent, borrow, maxBorrow, collateralValue],
+  );
+
   return (
     <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
       {statsData?.map(({ label, value, subtext }, idx) => (
@@ -18,7 +25,11 @@ export const BorrowStats = () => {
         >
           <small className="text-grey-600">{label}</small>
           <span className="">
-            {typeof value === "string" ? value : <MarketPrice price={value} />}
+            {typeof value === "string" ? (
+              value
+            ) : (
+              <MarketPrice price={value} invert />
+            )}
           </span>
           <small className="text-grey-600">{subtext ?? label}</small>
         </li>

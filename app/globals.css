@@ -79,6 +79,10 @@ body {
   background: #fff;
 }
 
+input[type="checkbox"] {
+  accent-color: var(--color-primary);
+}
+
 .card {
   border: solid 1px var(--color-Line);
   border-radius: 8px;

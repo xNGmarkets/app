@@ -551,7 +551,7 @@ export const transactionHisoryColData: Column<
   },
 ];
 
-export const borrrowColData: Column<BorrowTypes & { actions?: string }>[] = [
+export const borrowColData: Column<BorrowTypes & { actions?: string }>[] = [
   {
     title: "AMOUNTS",
     key: "amounts",
@@ -580,7 +580,8 @@ export const borrrowColData: Column<BorrowTypes & { actions?: string }>[] = [
   {
     title: "Action",
     key: "actions",
-    render: () => <Button className="pry-btn">Repay</Button>,
+    render: () => <Button className="pry-btn mr-0 ml-auto">Repay</Button>,
+    headerClassName: "text-right !pr-14",
   },
 ];
 

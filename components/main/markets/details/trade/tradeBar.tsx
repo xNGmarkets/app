@@ -8,6 +8,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { BuyAction } from "./BuyAction";
 import { LimitOrder, MarketBuy, PrimaryBurn, PrimaryMin } from "./tradeTypes";
 import { SellAction } from "./SellAction";
+import Terms from "../../Terms";
 
 export default function TradeBar({ data }: { data: StockProps }) {
   const [active, setActive] = useState("limit-order");
@@ -55,6 +56,7 @@ export default function TradeBar({ data }: { data: StockProps }) {
       </aside>
       <BuyAction stock={data} />
       <SellAction stock={data} />
+      <Terms />
     </>
   );
 }

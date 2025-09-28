@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import NavbarLink from "./navbarLink";
-import Hambugger from "./hambugger";
 import { useGlobalHooks } from "@/hooks/globalHooks";
-import { accountRoutes, navRoutes } from "../routes";
+import React from "react";
 import { ConnectWallet } from "../navActions";
+import { navRoutes } from "../routes";
+import Hambugger from "./hambugger";
+import NavbarLink from "./navbarLink";
 
 const ResponsiveNavBar = ({
   styles,
@@ -41,7 +41,7 @@ const ResponsiveNavBar = ({
                 );
               })}
             </ul>
-            <ul
+            {/* <ul
               className={`flex w-full flex-col justify-start space-y-5 lg:grow lg:flex-row lg:justify-end lg:space-y-0`}
             >
               {accountRoutes?.map((route, index) => {
@@ -55,7 +55,7 @@ const ResponsiveNavBar = ({
                   />
                 );
               })}
-            </ul>
+            </ul> */}
           </div>
 
           <div className="flex w-full items-center justify-start gap-3 gap-y-6 px-4 lg:w-fit lg:justify-end lg:px-0">

@@ -1,6 +1,6 @@
 "use client";
 import TableComponent from "@/components/ui/tableComponent/tableComponent";
-import { borrowDebtData, borrrowColData } from "@/utils/constant";
+import { borrowColData } from "@/utils/constant";
 import React from "react";
 
 export const TableWrapper = () => {
@@ -8,11 +8,7 @@ export const TableWrapper = () => {
     <section className="card p-4">
       <h5 className="text-grey-900 !mb-10 text-lg">Your Loans</h5>
 
-      <TableComponent
-        title="Borrow List"
-        columns={borrrowColData}
-        data={borrowDebtData}
-      />
+      <TableComponent title="Borrow List" columns={borrowColData} data={[]} />
     </section>
   );
 };
