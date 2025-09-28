@@ -315,10 +315,10 @@ export const BorrowRepayAction = ({ record }: { record: BorrowTypes }) => {
       });
 
       if (response) {
+        await updateBorrowRecord(record?._id, true);
         toast.success("Successfully repaid USDC loan!", {
           className: "toast-success",
         });
-        await updateBorrowRecord(record?._id, true);
         closeModal("repay");
         return;
       }

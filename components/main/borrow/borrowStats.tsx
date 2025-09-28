@@ -10,7 +10,7 @@ export const BorrowStats = () => {
     () => [
       { label: "Total collateral", value: collateralValue },
       { label: "Current debt", value: borrow, subtext: "Outstanding USDC" },
-      { label: "Borrow capacity left", value: borrow - maxBorrow },
+      { label: "Borrow capacity left", value: maxBorrow - borrow },
       { label: "Weighted LTV", value: `${ltvCurrent}%` },
     ],
     [ltvCurrent, borrow, maxBorrow, collateralValue],

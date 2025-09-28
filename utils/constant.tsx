@@ -450,38 +450,6 @@ export const supplyAccruedData = [
   },
 ];
 
-// Borrow/Debt Data
-export const borrowDebtData = [
-  {
-    amounts: 153000,
-    units: 50,
-    debts: 300,
-    ltv: 1.2,
-    hf: 59.75,
-  },
-  {
-    amounts: 100,
-    units: 50,
-    debts: 300,
-    ltv: 1.2,
-    hf: 59.75,
-  },
-  {
-    amounts: 100,
-    units: 50,
-    debts: 300,
-    ltv: 1.2,
-    hf: 59.75,
-  },
-  {
-    amounts: 100,
-    units: 50,
-    debts: 300,
-    ltv: 1.2,
-    hf: 59.75,
-  },
-];
-
 // Transaction History Data
 export const transactionHistoryData = [
   {
