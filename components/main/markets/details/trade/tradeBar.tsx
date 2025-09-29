@@ -13,7 +13,7 @@ import Terms from "../../Terms";
 export default function TradeBar({ data }: { data: StockProps }) {
   const [active, setActive] = useState("limit-order");
 
-  const { evmAddress } = data;
+  const { evmAddress, ticker } = data;
 
   const { price, lowestPrice, highestPrice } = useBandPrice(evmAddress);
 
@@ -26,7 +26,7 @@ export default function TradeBar({ data }: { data: StockProps }) {
   const currentScreen = useMemo(() => {
     switch (active) {
       case "limit-order":
-        return <LimitOrder />;
+        return <LimitOrder evmAddress={evmAddress} ticker={ticker} />;
       case "mint":
         return <PrimaryMin />;
       case "burn":
@@ -34,7 +34,7 @@ export default function TradeBar({ data }: { data: StockProps }) {
       default:
         return <MarketBuy price={price} />;
     }
-  }, [active, price]);
+  }, [active, price, evmAddress, ticker]);
 
   return (
     <>

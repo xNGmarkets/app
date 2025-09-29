@@ -1,18 +1,48 @@
 import Button from "@/components/ui/button";
 import Field from "@/components/ui/field";
 import { CustomSelect } from "@/components/ui/select/customSelect";
+import { USDC_XNG_CONTRACT } from "@/constants/contracts";
 import { useModalContext } from "@/context/modalContext";
+import useGetTokenBalance from "@/hooks/useGetTokenBalance";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { preferenceTypes, toleranceTypes } from "@/utils/constant";
 import React, { ReactNode } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { toast } from "sonner";
 import { MarketPrice } from "../../table/marketPrice";
 
-export const LimitOrder = () => {
-  const { tradeMethod, setTradeMethod, quantity } = usePriceAndQuantity();
+export const LimitOrder = ({
+  evmAddress,
+  ticker,
+}: {
+  evmAddress: string;
+  ticker: string;
+}) => {
+  const { tradeMethod, setTradeMethod, quantity, price } =
+    usePriceAndQuantity();
   const { openModal } = useModalContext();
+  const { balance: usdcBalance } = useGetTokenBalance(USDC_XNG_CONTRACT, 6);
+  const { balance: assetBalance } = useGetTokenBalance(evmAddress, 6);
 
   const handler = () => {
+    //quantity check
+    if (tradeMethod === "sell" && quantity > Number(assetBalance)) {
+      toast.error("Assets to sell is greater than your asset balance!", {
+        className: "toast-error",
+      });
+      return;
+    }
+
+    if (tradeMethod === "buy" && quantity * price > Number(usdcBalance)) {
+      toast.error(
+        "Total worth of assets to buy is greater than your purchasing power!",
+        {
+          className: "toast-error",
+        },
+      );
+      return;
+    }
+
     const agreedToTerms = localStorage.getItem("agreedToTerms");
     if (!agreedToTerms) {
       openModal("terms");
@@ -42,7 +72,14 @@ export const LimitOrder = () => {
         ))}
       </div>
       <PriceInput label="Price" />
-      <QtyInput label="Quantity" />
+      <QtyInput
+        label="Quantity"
+        available={
+          tradeMethod === "buy"
+            ? `${Number(usdcBalance)?.toLocaleString()} USDC`
+            : `${Number(assetBalance).toLocaleString()} ${ticker}`
+        }
+      />
       <Button
         disabled={!quantity}
         className="pry-btn w-full capitalize"
@@ -205,12 +242,25 @@ export const PriceInput = ({ label }: { label?: string }) => {
   );
 };
 
-export const QtyInput = ({ label }: { label?: string | ReactNode }) => {
+export const QtyInput = ({
+  label,
+  available,
+}: {
+  label?: string | ReactNode;
+  available?: string;
+}) => {
   const { quantity, increaseQuantity, decreaseQuantity, setQuantity } =
     usePriceAndQuantity();
   return (
     <article>
-      {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
+      <span className="flex items-center justify-between">
+        {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
+        {available ? (
+          <span className="!mb-2 block text-xs text-gray-600">
+            Available: {available}
+          </span>
+        ) : null}
+      </span>
       <div className="card flex min-h-[44px] items-center justify-between">
         <button
           className="btn !text-grey-600"
