@@ -63,7 +63,7 @@ export const MoreNav = () => {
         <li>
           <button
             className="flex items-center gap-2 text-sm !text-red-500 lg:text-base"
-            onClick={() => disconnect}
+            onClick={() => disconnect()}
           >
             <VscDebugDisconnect size={16} />
             <span>Disconnect</span>
