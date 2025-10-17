@@ -28,10 +28,10 @@ export const BorrowStats = () => {
             {typeof value === "string" ? (
               value
             ) : (
-              <MarketPrice price={value} invert />
+              <MarketPrice price={value} forceCurrency="$" />
             )}
           </span>
-          <small className="text-grey-600">{subtext ?? label}</small>
+          <small className="text-grey-600">{subtext ?? ""}</small>
         </li>
       ))}
     </ul>

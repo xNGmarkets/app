@@ -16,18 +16,60 @@ export function processedOrders(orders: any[]): OrderProps[] {
   }));
 }
 
+export function processRawOpenOrders(orders: any[]): OrderProps[] {
+  const formattedOrders: OrderProps[] = [];
+  const orderIds = orders?.[0];
+  orderIds.forEach((orderId: bigint, index: number) => {
+    const id = Number(orderId);
+    const order = orders?.[1][index];
+
+    formattedOrders.push({
+      id,
+      trader: order?.trader,
+      asset: order?.asset,
+      type: order?.side === 0 ? "buy" : "sell",
+      isMarketBuy: order?.isMarket,
+      quantity: Number(formatUnits(order?.qty?.toString(), 6)) ?? 1,
+      price: Number(formatUnits(order?.pxE6?.toString(), 6)),
+      date: new Date(Number(order?.ts ?? 0) * 1000).toLocaleString(),
+      isActive: order?.active,
+    });
+  });
+
+  return formattedOrders;
+}
+
+export function processRawOrders(orders: any[]): OrderProps[] {
+  const formattedOrders: OrderProps[] = [];
+
+  let globalIndex = 0;
+  orders.forEach((orderArr) => {
+    orderArr.forEach((order: any) => {
+      formattedOrders.push({
+        id: globalIndex,
+        trader: order?.trader,
+        asset: order?.asset,
+        type: order?.side === 0 ? "buy" : "sell",
+        isMarketBuy: order?.isMarket,
+        quantity: Number(formatUnits(order?.qty?.toString(), 6)) ?? 1,
+        price: Number(formatUnits(order?.pxE6?.toString(), 6)),
+        date: new Date(Number(order?.ts ?? 0) * 1000).toLocaleString(),
+        isActive: order?.active,
+      });
+      globalIndex++;
+    });
+  });
+
+  return formattedOrders;
+}
+
 interface sortedOrderResponse {
   asks: OrderProps[];
   bids: OrderProps[];
 }
 
-export function sortOrders(
-  asset: string,
-  orders: OrderProps[],
-): sortedOrderResponse {
-  const orderForAsset = orders.filter((order) => order.asset === asset);
-
-  const bids = orderForAsset.filter((order) => order.type === "buy");
-  const asks = orderForAsset.filter((order) => order.type === "sell");
+export function sortOrders(orders: OrderProps[]): sortedOrderResponse {
+  const bids = orders.filter((order) => order.type === "buy");
+  const asks = orders.filter((order) => order.type === "sell");
   return { bids, asks };
 }

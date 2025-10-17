@@ -2,7 +2,7 @@
 import TableComponent, {
   Column,
 } from "@/components/ui/tableComponent/tableComponent";
-import { useGetUserOrdersByStockAddressAndUserAddress } from "@/hooks/useGetOrders";
+import useGetUserOrders from "@/hooks/useGetUserOrders";
 import { cn } from "@/libs/utils";
 import { OrderProps } from "@/types/order";
 import React from "react";
@@ -19,7 +19,9 @@ export const columns: Column<OrderProps & { actions?: string }>[] = [
   {
     title: "PRICE",
     key: "price",
-    render: (_, { price }) => <MarketPrice price={price} />,
+    render: (_, { price }) => (
+      <MarketPrice price={price} forceCurrency="$" invert showPriceInUsdc />
+    ),
   },
   {
     title: "QUANTITY",
@@ -49,10 +51,7 @@ export const columns: Column<OrderProps & { actions?: string }>[] = [
 
 const MyOrder = ({ stockAddress }: { stockAddress: string }) => {
   const { address } = useAccount();
-  const data = useGetUserOrdersByStockAddressAndUserAddress(
-    stockAddress,
-    address as string,
-  );
+  const data = useGetUserOrders(stockAddress, address as string);
   if (data.length === 0) return;
   return <TableComponent title="My Orders" columns={columns} data={data} />;
 };

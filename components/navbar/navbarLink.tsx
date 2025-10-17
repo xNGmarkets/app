@@ -1,10 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import PopoverWrapper from "../ui/popover/popoverWrapper";
+import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import PopoverWrapper from "../ui/popover/popoverWrapper";
 
 type NavbarLinkProps = {
   path: string;
@@ -38,6 +38,7 @@ export default function NavbarLink({
             <Link
               key={idx}
               href={path}
+              target={path.includes("https") ? "_blank" : "_self"}
               className={` ${pathName.includes(path) ? "navbarActive" : "navbarNotActive"} hover:!text-primary flex items-center gap-2`}
               onClick={action}
             >

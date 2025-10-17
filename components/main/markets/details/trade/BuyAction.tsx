@@ -12,6 +12,7 @@ import {
 } from "@/constants/contracts";
 import { useModalContext } from "@/context/modalContext";
 import { approveTokenForSpend, buyAndSellStock } from "@/helper";
+import useExchangeRate from "@/hooks/useExchangeRate";
 import useGetAccountID from "@/hooks/useGetAccountID";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { StockProps } from "@/types/stock";
@@ -41,7 +42,7 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
   const { data: walletClient } = useWalletClient();
   const { openConnectModal } = useConnectModal();
   const accountId = useGetAccountID();
-  // const rate = useExchangeRate();
+  const rate = useExchangeRate();
 
   const resetAndClose = () => {
     setIsBuying(false);
@@ -121,8 +122,11 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
   const buyHandler = async () => {
     if (!stock?.evmAddress || !quantity || !price) return;
     setIsBuying(true);
-    // const amountToTrade = (price / rate) * quantity;
-    const amountToTradeFormatted = parseUnits((price * quantity).toString(), 6);
+    const amountToTrade = Number((price / rate).toFixed(6));
+    const amountToTradeFormatted = parseUnits(
+      (amountToTrade * quantity).toString(),
+      6,
+    );
 
     try {
       // Associate the stock token with the user's wallet
@@ -144,7 +148,12 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
 
       setIsTokenSpendApproved(true);
       setIsPlacingOrder(true);
-      await buyAndSellStock(stock.evmAddress, price, quantity, SIDE.Buy);
+      await buyAndSellStock(
+        stock.evmAddress,
+        amountToTrade,
+        quantity,
+        SIDE.Buy,
+      );
 
       toast.success("Buy order was placed successfully!", {
         className: "toast-success",
@@ -178,7 +187,13 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
           <div className="bg-grey-25 space-y-3 rounded-lg p-3">
             <Field
               title="Price"
-              value={<MarketPrice price={price} className="text-end" />}
+              value={
+                <MarketPrice
+                  price={price}
+                  showPriceInUsdc
+                  className="text-end"
+                />
+              }
             />
             <Field
               title="Quantity"
@@ -190,9 +205,16 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
               value={
                 <MarketPrice
                   price={price * quantity}
+                  showPriceInUsdc
                   className="text-end font-bold"
                 />
               }
+            />
+
+            <Field
+              title="Rate"
+              value={`₦${rate.toFixed(2)}/$`}
+              valueClassName="text-end"
             />
           </div>
 

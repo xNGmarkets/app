@@ -3,12 +3,15 @@ import Field from "@/components/ui/field";
 import { CustomSelect } from "@/components/ui/select/customSelect";
 import { USDC_XNG_CONTRACT } from "@/constants/contracts";
 import { useModalContext } from "@/context/modalContext";
+import useExchangeRate from "@/hooks/useExchangeRate";
 import useGetTokenBalance from "@/hooks/useGetTokenBalance";
 import usePriceAndQuantity from "@/store/usePriceAndQuantity.store";
 import { preferenceTypes, toleranceTypes } from "@/utils/constant";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { toast } from "sonner";
+import { useDebouncedCallback } from "use-debounce";
+import { useAccount } from "wagmi";
 import { MarketPrice } from "../../table/marketPrice";
 
 export const LimitOrder = ({
@@ -23,8 +26,17 @@ export const LimitOrder = ({
   const { openModal } = useModalContext();
   const { balance: usdcBalance } = useGetTokenBalance(USDC_XNG_CONTRACT, 6);
   const { balance: assetBalance } = useGetTokenBalance(evmAddress, 6);
+  const rate = useExchangeRate();
+  const { isConnected } = useAccount();
 
   const handler = () => {
+    if (!isConnected) {
+      toast.error("Please connect an evm wallet!", {
+        className: "toast-error",
+      });
+      return;
+    }
+
     //quantity check
     if (tradeMethod === "sell" && quantity > Number(assetBalance)) {
       toast.error("Assets to sell is greater than your asset balance!", {
@@ -33,7 +45,10 @@ export const LimitOrder = ({
       return;
     }
 
-    if (tradeMethod === "buy" && quantity * price > Number(usdcBalance)) {
+    if (
+      tradeMethod === "buy" &&
+      quantity * price > Number(usdcBalance) * Number(rate || 1)
+    ) {
       toast.error(
         "Total worth of assets to buy is greater than your purchasing power!",
         {
@@ -211,6 +226,16 @@ export const PrimaryBurn = () => {
 export const PriceInput = ({ label }: { label?: string }) => {
   const { price, increasePrice, decreasePrice, setPrice } =
     usePriceAndQuantity();
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (price) setValue(price);
+  }, [price]);
+
+  const debounced = useDebouncedCallback(async () => {
+    setPrice(value);
+  }, 1000);
+
   return (
     <article>
       {label && <h5 className="text-grey-700 !mb-2 text-sm">{label}</h5>}
@@ -223,15 +248,17 @@ export const PriceInput = ({ label }: { label?: string }) => {
           <FaMinus />
         </button>
         <div className="flex flex-1 items-center justify-center text-base">
-          <span className="w-3/6 text-end">₦</span>
+          <span className="block !max-w-[3rem] flex-1 text-end">₦</span>
           <input
-            name=""
-            id=""
-            type="tel"
+            type="number"
             placeholder="0.0"
-            className="focus flex w-3/6 bg-transparent focus:border-0 focus:outline-0"
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
+            className="focus block !max-w-[5rem] flex-1 focus:border-0 focus:outline-0"
+            value={value}
+            onChange={(event) => {
+              const value = event.target.value;
+              setValue(Number(Number(value).toFixed(3)));
+              debounced();
+            }}
           />
         </div>
         <button className="btn !text-grey-600" onClick={increasePrice}>

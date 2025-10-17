@@ -15,11 +15,11 @@ export const SupplyStats = () => {
     <ul className="sm:grid-col-2 grid grid-cols-1 gap-3 md:grid-cols-4">
       <li className="card text-grey-900 flex flex-col gap-2 p-5 text-2xl">
         <small className="text-grey-600">Total supplied</small>
-        <MarketPrice price={supply} invert />
+        <MarketPrice price={supply} forceCurrency="$" />
       </li>
       <li className="card text-grey-900 flex flex-col gap-2 p-5 text-2xl">
         <small className="text-grey-600">Accrued rewards</small>
-        <MarketPrice price={accrued} invert />
+        <MarketPrice price={accrued} forceCurrency="$" />
         <small className="text-grey-600">Outstanding USDC</small>
       </li>
       <li className="card text-grey-900 flex flex-col gap-2 p-5 text-2xl">

@@ -1,13 +1,13 @@
 import Button from "@/components/ui/button";
 import { UserAvatar } from "@/components/ui/UserAvatar";
 import useBandPrice from "@/hooks/useBandPrice";
+import useGetBestPrices from "@/hooks/useGetBestPrices";
 import { StockProps } from "@/types/stock";
 import React from "react";
 import { BsDot } from "react-icons/bs";
 import { Star } from "../star";
 import { Dividends } from "../table/dividends";
 import { MarketPrice } from "../table/marketPrice";
-import useGetBestPrices from "@/hooks/useGetBestPrices";
 
 export const GridCard = ({ data }: { data: StockProps }) => {
   const {
@@ -20,7 +20,7 @@ export const GridCard = ({ data }: { data: StockProps }) => {
     dividendRatio,
     evmAddress,
   } = data;
-  const { band, price } = useBandPrice(evmAddress);
+  const { band, price, lowestPrice, highestPrice } = useBandPrice(evmAddress);
 
   const { bidPrice, askPrice } = useGetBestPrices(evmAddress);
 
@@ -58,11 +58,17 @@ export const GridCard = ({ data }: { data: StockProps }) => {
         </li>
         <li className="flex flex-col items-center gap-1">
           Ask Price
-          <MarketPrice price={askPrice} className="text-grey-900 !text-base" />
+          <MarketPrice
+            price={askPrice || lowestPrice}
+            className="text-grey-900 !text-base"
+          />
         </li>
         <li className="flex flex-col items-center gap-1">
           Bid Price
-          <MarketPrice price={bidPrice} className="text-grey-900 !text-base" />
+          <MarketPrice
+            price={bidPrice || highestPrice}
+            className="text-grey-900 !text-base"
+          />
         </li>
       </ul>
 
@@ -70,7 +76,7 @@ export const GridCard = ({ data }: { data: StockProps }) => {
         <MarketPrice
           price={price}
           className="text-grey-900 !text-2xl"
-          // subtext="+0.8%"
+          showPriceInUsdc
         />
 
         <Button link href={`/markets/${_id}`} className="pry-btn !text-sm">

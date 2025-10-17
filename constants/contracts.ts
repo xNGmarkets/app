@@ -9,3 +9,5 @@ export const CLOB_CONTRACT = process.env
 export const BORROW_SUPPLY_CONTRACT = process.env
   .NEXT_PUBLIC_BORROW_SUPPLY_CONTRACT as `0x${string}`;
 export const HTS_ADDRESS = "0x0000000000000000000000000000000000000167";
+
+export const XNGN = process.env.NEXT_PUBLIC_XNGN as `0x${string}`;

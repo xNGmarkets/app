@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+import ORACLE_HUB_ABI from "@/config/abis/oraclehub.abi";
+import { ORACLE_HUB_CONTRACT, XNGN } from "@/constants/contracts";
+import { useReadContract } from "wagmi";
+
+type Props = {
+  priceE6?: bigint;
+};
 
 const useExchangeRate = () => {
-  const [rate, setRate] = useState(0);
-  useEffect(() => {
-    // fetch exchange rate from an API
-    const fetchExchangeRate = async () => {
-      try {
-        const response = await fetch(
-          "https://api.exchangerate-api.com/v4/latest/USD",
-        );
-        const data = await response.json();
-        setRate(data.rates.NGN);
-      } catch (error) {
-        console.error("Error fetching exchange rate:", error);
-      }
-    };
+  const { data } = useReadContract({
+    address: ORACLE_HUB_CONTRACT,
+    abi: ORACLE_HUB_ABI,
+    functionName: "getPrice",
+    args: [XNGN],
+  }) as { data: Props };
 
-    fetchExchangeRate();
-  }, []);
+  if (!data) {
+    return 0;
+  }
+  const rate = data?.priceE6 ? Number(data?.priceE6) / 1_000_000 : 0;
   return rate;
 };
 

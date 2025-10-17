@@ -11,7 +11,7 @@ import { FaStar } from "react-icons/fa6";
 import useBandPrice from "@/hooks/useBandPrice";
 import useExchangeRate from "@/hooks/useExchangeRate";
 import useGetBestPrices from "@/hooks/useGetBestPrices";
-import { useGetOrdersByStockAddress } from "@/hooks/useGetOrders";
+import { useGetOrderBook } from "@/hooks/useGetOrderBook";
 import { StockProps } from "@/types/stock";
 
 export default function MarketInfo({ data }: { data: StockProps }) {
@@ -29,7 +29,8 @@ export default function MarketInfo({ data }: { data: StockProps }) {
   const rate = useExchangeRate();
 
   const { bidPrice, askPrice } = useGetBestPrices(evmAddress);
-  const { asks, bids } = useGetOrdersByStockAddress(evmAddress);
+
+  const { asks, bids } = useGetOrderBook(evmAddress);
 
   return (
     <aside className="w-full !space-y-3 px-3 py-5 lg:w-[27%] lg:px-6">
@@ -65,23 +66,19 @@ export default function MarketInfo({ data }: { data: StockProps }) {
             // subtext="+1.45%"
             wrapperClassName="flex items-center "
           />
-          <small>
-            ~ {rate ? (price / rate).toFixed(4) : 0} USD @ ₦
-            {rate.toLocaleString()}
-            /$
-          </small>
+          <small>~ ${rate ? (price / rate).toFixed(3) : 0}</small>
         </li>
         <li className="card text-grey-500 flex flex-col items-center gap-1 p-2 !text-xs">
           Bid Price
           <MarketPrice
-            price={Number(bidPrice) ?? 0}
+            price={Number(bidPrice) || highestPrice}
             className="text-grey-900 !text-base"
           />
         </li>
         <li className="card text-grey-500 flex flex-col items-center gap-1 p-2 !text-xs">
           Ask Price
           <MarketPrice
-            price={Number(askPrice) ?? 0}
+            price={Number(askPrice) || lowestPrice}
             className="text-grey-900 !text-base"
           />
         </li>
@@ -145,7 +142,7 @@ export default function MarketInfo({ data }: { data: StockProps }) {
                   key={order.id}
                   className="text-error-500 flex justify-between gap-2 !text-sm"
                 >
-                  <MarketPrice price={order.price} />
+                  <MarketPrice price={order.price * rate} showPriceInUsdc />
                   <span>{order.quantity}</span>
                 </li>
               ))}
@@ -162,7 +159,7 @@ export default function MarketInfo({ data }: { data: StockProps }) {
                   key={order.id}
                   className="text-success-100 flex justify-between gap-2 !text-sm"
                 >
-                  <MarketPrice price={order.price} />
+                  <MarketPrice price={order.price * rate} showPriceInUsdc />
                   <span>{order.quantity}</span>
                 </li>
               ))}
