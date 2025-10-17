@@ -489,7 +489,7 @@ export const supplyColData: Column<SupplyTypes & { actions?: string }>[] = [
   {
     title: "SUPPLIED",
     key: "amount",
-    render: (_, { amount }) => <MarketPrice price={amount} invert />,
+    render: (_, { amount }) => <MarketPrice price={amount} forceCurrency="$" />,
   },
 ];
 

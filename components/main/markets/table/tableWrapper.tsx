@@ -68,17 +68,17 @@ const RowData = ({ record }: { record: StockProps }) => {
       <TableCell
         className={cn("text-grey-800 py-5 font-medium whitespace-nowrap")}
       >
-        <MarketPrice price={askPrice} />
+        <MarketPrice price={askPrice} showPriceInUsdc />
       </TableCell>
       <TableCell
         className={cn("text-grey-800 py-5 font-medium whitespace-nowrap")}
       >
-        <MarketPrice price={bidPrice} />
+        <MarketPrice price={bidPrice} showPriceInUsdc />
       </TableCell>
       <TableCell
         className={cn("text-grey-800 py-5 font-medium whitespace-nowrap")}
       >
-        <MarketPrice price={price} />
+        <MarketPrice price={price} showPriceInUsdc />
       </TableCell>
       <TableCell
         className={cn("text-grey-800 py-5 font-medium whitespace-nowrap")}

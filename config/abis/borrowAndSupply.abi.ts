@@ -51,6 +51,12 @@ const BORROW_AND_SUPPLY_ABI = [
   {
     type: "event",
     anonymous: false,
+    name: "FxAssetSet",
+    inputs: [{ type: "address", name: "fxAsset", indexed: false }],
+  },
+  {
+    type: "event",
+    anonymous: false,
     name: "OracleSet",
     inputs: [{ type: "address", name: "oracle", indexed: false }],
   },
@@ -226,6 +232,15 @@ const BORROW_AND_SUPPLY_ABI = [
   },
   {
     type: "function",
+    name: "fxAsset",
+    constant: true,
+    stateMutability: "view",
+    payable: false,
+    inputs: [],
+    outputs: [{ type: "address", name: "" }],
+  },
+  {
+    type: "function",
     name: "htsAssociate",
     constant: false,
     payable: false,
@@ -321,6 +336,14 @@ const BORROW_AND_SUPPLY_ABI = [
     payable: false,
     inputs: [],
     outputs: [{ type: "uint16", name: "" }],
+  },
+  {
+    type: "function",
+    name: "setFxAsset",
+    constant: false,
+    payable: false,
+    inputs: [{ type: "address", name: "_fxAsset" }],
+    outputs: [],
   },
   {
     type: "function",

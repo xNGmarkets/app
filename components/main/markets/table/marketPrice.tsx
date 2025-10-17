@@ -1,5 +1,5 @@
 "use client";
-import { useViewLayoutContext } from "@/context/viewLayoutProvider";
+
 import useExchangeRate from "@/hooks/useExchangeRate";
 import React, { useMemo } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
@@ -10,8 +10,9 @@ export const MarketPrice = ({
   className,
   wrapperClassName,
   decimals = 2,
-  invert,
+  showPriceInUsdc = false,
   forceCurrency,
+  invert,
 }: {
   className?: string;
   wrapperClassName?: string;
@@ -20,27 +21,40 @@ export const MarketPrice = ({
   decimals?: number;
   invert?: boolean;
   forceCurrency?: string;
+  showPriceInUsdc?: boolean;
 }) => {
-  const { currency } = useViewLayoutContext();
   const rate = useExchangeRate();
+  // const formattedPrice = useMemo(() => {
+  //   if (forceCurrency) return price;
 
-  const formattedPrice = useMemo(() => {
-    if (forceCurrency) return price;
+  //   if (!rate) return price;
+  //   if (invert) {
+  //     return currency === "$" ? price : price * rate;
+  //   }
+  //   return currency === "$" ? price / rate : price;
+  // }, [currency, price, rate, invert, forceCurrency]);
 
-    if (!rate) return price;
+  const priceInUsdc = useMemo(() => {
+    if (!rate) return 0;
     if (invert) {
-      return currency === "$" ? price : price * rate;
+      return (price * rate).toFixed(3);
     }
-    return currency === "$" ? price / rate : price;
-  }, [currency, price, rate, invert, forceCurrency]);
+    return (price / rate).toFixed(3);
+  }, [rate, price, invert]);
 
   return (
     <div className={wrapperClassName}>
-      <h5 className={className}>
-        {forceCurrency ? forceCurrency : currency}
-        {formattedPrice?.toLocaleString("en-US", {
+      <h5 className={`${className} text-center`}>
+        {forceCurrency ? forceCurrency : "₦"}
+        {price?.toLocaleString("en-US", {
           maximumFractionDigits: decimals,
-        })}
+        })}{" "}
+        {showPriceInUsdc ? (
+          <span className="text-xs opacity-60 lg:text-sm">
+            ({forceCurrency === "$" ? "₦" : "$"}
+            {priceInUsdc})
+          </span>
+        ) : null}
       </h5>
       {subtext ? (
         <small

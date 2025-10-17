@@ -27,6 +27,10 @@ export const navRoutes = [
     name: "Supply",
     path: "/supply",
   },
+  {
+    name: "Faucet",
+    path: "https://hedera-usdc-faucet.vercel.app/",
+  },
 ];
 
 export const accountRoutes = [

@@ -1,5 +1,3 @@
-import { useModalContext } from "@/context/modalContext";
-import { useViewLayoutContext } from "@/context/viewLayoutProvider";
 import { useGlobalHooks } from "@/hooks/globalHooks";
 import { shortenAddress } from "@/libs/utils";
 import { allImages } from "@/public/images/images";
@@ -7,14 +5,12 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IoSettingsOutline } from "react-icons/io5";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { useAccount, useDisconnect } from "wagmi";
-import CurrencySwitcher from "./currencySwitcher";
 import { moreNavRoutes } from "./routes";
 import Button from "./ui/button";
-import ModalWrapper from "./ui/modals/ModalWrapper";
 import PopoverWrapper from "./ui/popover/popoverWrapper";
+import Rate from "./main/Rate";
 
 export const ConnectWallet = () => {
   const { isConnected, address } = useAccount();
@@ -22,7 +18,7 @@ export const ConnectWallet = () => {
 
   return (
     <div className="flex items-center gap-4">
-      <CurrencyToggle />
+      <Rate />
       {isConnected && address ? (
         <article className="card flex items-center gap-2 p-3">
           <div className="flex items-center gap-2">
@@ -71,28 +67,5 @@ export const MoreNav = () => {
         </li>
       </ul>
     </PopoverWrapper>
-  );
-};
-
-export const CurrencyToggle = () => {
-  const { openModal, isOpen } = useModalContext();
-  const { currency } = useViewLayoutContext();
-  return (
-    <>
-      <button onClick={() => openModal("currency")}>
-        <IoSettingsOutline />
-      </button>
-
-      {isOpen["currency"] && (
-        <ModalWrapper
-          id="currency"
-          wrapperClass="!max-w-3/12"
-          title={`Default Currency: ${currency}`}
-          titleClass="!text-grey-900 !text-sm !font-medium"
-        >
-          <CurrencySwitcher />
-        </ModalWrapper>
-      )}
-    </>
   );
 };

@@ -25,6 +25,7 @@ export const SupplyUSDCAction = () => {
   const { isPending, writeContractAsync } = useWriteContract();
   const [isApprovingTokenSpend, setIsApprovingTokenSpend] = useState(false);
   const { address } = useAccount();
+  const { reset } = useGetPortfolio();
 
   const supplyHandler = async () => {
     try {
@@ -50,6 +51,7 @@ export const SupplyUSDCAction = () => {
         toast.success("Successfully supplied USDC!", {
           className: "toast-success",
         });
+        reset();
         return;
       }
       toast.error("Failed to supply USDC!", {
@@ -84,6 +86,7 @@ export const SupplyUSDCAction = () => {
           onClick={supplyHandler}
           className="pry-btn w-full"
           disabled={
+            !quantity ||
             !Number(balance) ||
             quantity > Number(balance) ||
             isPending ||

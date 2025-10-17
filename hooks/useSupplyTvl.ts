@@ -1,16 +1,20 @@
-import BORROW_AND_SUPPLY_ABI from "@/config/abis/borrowAndSupply.abi";
-import { BORROW_SUPPLY_CONTRACT } from "@/constants/contracts";
+import {
+  BORROW_SUPPLY_CONTRACT,
+  USDC_XNG_CONTRACT,
+} from "@/constants/contracts";
+import { erc20Abi } from "viem";
 import { useReadContract } from "wagmi";
 
 const useSupplyTvl = () => {
   const { data } = useReadContract({
-    address: BORROW_SUPPLY_CONTRACT,
-    abi: BORROW_AND_SUPPLY_ABI,
-    functionName: "totalReservesE6",
+    address: USDC_XNG_CONTRACT,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: [BORROW_SUPPLY_CONTRACT],
   });
 
   if (!data) return 0;
-  return Number(data);
+  return data ? Number(data) / 1_000_000 : 0;
 };
 
 export default useSupplyTvl;
