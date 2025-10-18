@@ -186,6 +186,11 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
         >
           <div className="bg-grey-25 space-y-3 rounded-lg p-3">
             <Field
+              title="Rate"
+              value={`₦${rate.toFixed(2)}/$`}
+              valueClassName="text-end"
+            />
+            <Field
               title="Price"
               value={
                 <MarketPrice
@@ -209,12 +214,6 @@ export const BuyAction = ({ stock }: BuyActionProps) => {
                   className="text-end font-bold"
                 />
               }
-            />
-
-            <Field
-              title="Rate"
-              value={`₦${rate.toFixed(2)}/$`}
-              valueClassName="text-end"
             />
           </div>
 

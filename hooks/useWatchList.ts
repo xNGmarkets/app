@@ -1,6 +1,7 @@
 import { queryClient } from "@/context/providers";
 import { StockProps } from "@/types/stock";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 interface WatchListResponse {
   watchList: StockProps[];
@@ -64,7 +65,15 @@ export const useWatchList = (address: string) => {
 
   const toggleWatchList = (stockId: string) => {
     if (!address) {
-      //   toast.error("User address is required");
+      toast.error("User address is required", {
+        className: "toast-error",
+      });
+      return;
+    }
+    if (!stockId) {
+      toast.error("Missing stockId", {
+        className: "toast-error",
+      });
       return;
     }
     mutation.mutate({ address, stockId });
