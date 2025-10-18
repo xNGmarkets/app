@@ -95,19 +95,32 @@ export const SellAction = ({ stock }: SellActionProps) => {
         >
           <div className="bg-grey-25 space-y-3 rounded-lg p-3">
             <Field
+              title="Rate"
+              value={`₦${rate.toFixed(2)}/$`}
+              valueClassName="text-end"
+            />
+            <Field
               title="Price"
-              value={<MarketPrice price={price} className="text-end" />}
+              value={
+                <MarketPrice
+                  price={price}
+                  showPriceInUsdc
+                  className="text-end"
+                />
+              }
             />
             <Field
               title="Quantity"
               value={quantity.toString()}
               valueClassName="text-end"
             />
+
             <Field
               title="Total"
               value={
                 <MarketPrice
                   price={price * quantity}
+                  showPriceInUsdc
                   className="text-end font-bold"
                 />
               }

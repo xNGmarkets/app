@@ -34,7 +34,7 @@ export async function buyAndSellStock(
 
   const qtyE6 = BigInt(quantity * 1e6);
   const pxE6 = BigInt(price * 1e6);
-  const res = await contract.place(asset, side, false, qtyE6, pxE6);
+  const res = await contract.place(asset, side, side === 0, qtyE6, pxE6);
   const tx = await res.wait();
 
   //match orders after placing buy/sell order

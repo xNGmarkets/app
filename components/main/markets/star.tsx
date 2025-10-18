@@ -20,7 +20,7 @@ export const Star = ({ id, size }: { id: string; size?: number }) => {
       openConnectModal?.();
       return;
     }
-    toggleWatchList(id);
+    if (id) toggleWatchList(id);
   };
 
   const isFavorite = useMemo(

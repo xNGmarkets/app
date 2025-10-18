@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
     const watchList = await watchListModel
-      .findOne({ userId: user._id })
+      .findOne({ userId: user?._id })
       .populate("stockIds");
 
     if (!watchList) {
@@ -32,12 +32,14 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json(
-      { watchList: watchList.stockIds },
+      { watchList: watchList?.stockIds || [] },
       { status: 200 },
     );
-  } catch {
+  } catch (error: any) {
     return NextResponse.json(
-      { error: "Internal server error" },
+      {
+        error: error?.shortMessage || error?.message || "Internal server error",
+      },
       { status: 500 },
     );
   }
