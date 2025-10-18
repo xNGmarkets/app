@@ -1,4 +1,5 @@
 import { connectToDatabase } from "@/config";
+import "@/config/models/stock.model";
 import userModel from "@/config/models/user.model";
 import watchListModel from "@/config/models/watchlist.model";
 import { NextRequest, NextResponse } from "next/server";
