@@ -130,7 +130,7 @@ export const SellAction = ({ stock }: SellActionProps) => {
           {isSelling ? (
             <div className="bg-grey-25 space-y-3 rounded-lg p-3">
               <Field
-                title="Approving USDC token spend"
+                title={`Approving ${stock?.ticker} spend`}
                 value={
                   isTokenSpendApproved ? (
                     <LiaCheckCircleSolid size={20} className="text-primary" />
